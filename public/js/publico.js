@@ -30,79 +30,139 @@ const lblTicket14 = document.querySelector('#lblTicket14');
 const lblEscritorio14 = document.querySelector('#lblEscritorio14');
 
 
-
 const socket = io();
 
+// Objeto para almacenar los tickets actuales de cada escritorio
+const escritorios = {};
 
+// Función para actualizar la pantalla pública con los tickets actuales
+function actualizarPantalla() {
+    for (let escritorio in escritorios) {
+        const lblTicket = document.querySelector(`#lblTicket${escritorio}`);
+        const lblEscritorio = document.querySelector(`#lblEscritorio${escritorio}`);
 
-socket.on('estado-actual', ( payload ) => {
+        if (escritorios[escritorio]) {
+            lblTicket.innerText = escritorios[escritorio].numero;
+            lblEscritorio.innerText = escritorios[escritorio].escritorio;
+        } else {
+            lblTicket.innerText = '';
+            lblEscritorio.innerText = '';
+        }
+    }
+}
 
-    const audio = new Audio('./audio/new-ticket.mp3');
-    audio.play();
+socket.on('estado-actual', (payload) => {
+    // Actualizar los tickets actuales de cada escritorio
+    payload.forEach((ticket) => {
+        escritorios[ticket.escritorio] = ticket;
+    });
 
-
-    const [ ticket1, ticket2, ticket3, ticket4,ticket5,ticket6,ticket7,ticket8,ticket9,ticket10,ticket11,ticket12,ticket13,ticket14 ] = payload;
-
-    if( ticket1 ){
-        lblTicket1.innerText =  ticket1.numero;
-     
-    }
-    
-    if( ticket2 ){
-        lblTicket2.innerText =  ticket2.numero;
-     
-    }
-    
-    if( ticket3 ){
-        lblTicket3.innerText =  ticket3.numero;
-     
-    }
-    
-    if( ticket4 ){
-        lblTicket4.innerText =  ticket4.numero;
-     
-    }
-    if( ticket5){
-        lblTicket5.innerText =  ticket5.numero;
-     
-    }
-    if( ticket6 ){
-        lblTicket6.innerText =  ticket6.numero;
-     
-    }
-    if( ticket7 ){
-        lblTicket7.innerText =  ticket7.numero;
-     
-    }
-    if( ticket8 ){
-        lblTicket8.innerText =  ticket8.numero;
-     
-    }
-    if( ticket9 ){
-        lblTicket9.innerText =  ticket9.numero;
-     
-    }
-    if( ticket10 ){
-        lblTicket10.innerText =  ticket10.numero;
-     
-    }
-    if( ticket11 ){
-        lblTicket11.innerText =  ticket11.numero;
-     
-    }
-    if( ticket12 ){
-        lblTicket12.innerText =  ticket12.numero;
-     
-    }
-    if( ticket13 ){
-        lblTicket13.innerText =  ticket13.numero;
-     
-    }
-    if( ticket14 ){
-        lblTicket14.innerText =  ticket14.numero;
-     
-    }
-    
-
-
+    // Actualizar la pantalla pública
+    actualizarPantalla();
 });
+socket.on('nuevo-ticket', (payload) => {
+    const { escritorio, ticket } = payload;
+
+    // Identificar el elemento de la tabla correspondiente al escritorio
+    const filaEscritorio = document.getElementById(`escritorio${escritorio}`);
+
+    // Actualizar el contenido de los elementos en esa fila con la información del nuevo ticket
+    filaEscritorio.querySelector('#lblTicket1').innerText = ticket.numero;
+    filaEscritorio.querySelector('#lblEscritorio1').innerText = escritorio;
+});
+
+socket.on('actualizar-ticket', (payload) => {
+    const { escritorio, ticket } = payload;
+    const elementoEscritorio = document.getElementById(`lblEscritorio${escritorio}`);
+    const elementoTicket = document.getElementById(`lblTicket${escritorio}`);
+
+    if (elementoEscritorio && elementoTicket) {
+        elementoEscritorio.innerText = escritorio;
+        elementoTicket.innerText = ticket.numero;
+    }
+});
+
+
+
+// const socket = io();
+
+
+
+// socket.on('estado-actual', ( payload ) => {
+
+//     const audio = new Audio('./audio/new-ticket.mp3');
+//     audio.play();
+
+
+//     const [ ticket1, ticket2, ticket3, ticket4,ticket5,ticket6,ticket7,ticket8,ticket9,ticket10,ticket11,ticket12,ticket13,ticket14 ] = payload;
+
+//     if( ticket1 ){
+//         lblTicket1.innerText =  ticket1.numero;
+//         lblEscritorio1.innerText = ticket1.escritorio;
+     
+//     }
+    
+//     if( ticket2 ){
+//         lblTicket2.innerText =  ticket2.numero;
+//         lblEscritorio2.innerText = ticket2.escritorio;
+     
+//     }
+    
+//     if( ticket3 ){
+//         lblTicket3.innerText =  ticket3.numero;
+//         lblEscritorio3.innerText = ticket3.escritorio;
+     
+//     }
+    
+//     if( ticket4 ){
+//         lblTicket4.innerText =  ticket4.numero;
+//         lblEscritorio4.innerText = ticket4.escritorio;
+     
+//     }
+//     if( ticket5){
+//         lblTicket5.innerText =  ticket5.numero;
+//         lblEscritorio5.innerText = ticket5.escritorio;
+     
+//     }
+//     if( ticket6 ){
+//         lblTicket6.innerText =  ticket6.numero;
+//         lblEscritorio6.innerText = ticket6.escritorio;
+     
+//     }
+//     if( ticket7 ){
+//         lblTicket7.innerText =  ticket7.numero;
+//         lblEscritorio7.innerText = ticket7.escritorio;
+     
+//     }
+//     if( ticket8 ){
+//         lblTicket8.innerText =  ticket8.numero;
+//         lblEscritorio8.innerText = ticket8.escritorio;
+//     }
+//     if( ticket9 ){
+//         lblTicket9.innerText =  ticket9.numero;
+//         lblEscritorio9.innerText = ticket9.escritorio;
+//     }
+//     if( ticket10 ){
+//         lblTicket10.innerText =  ticket10.numero;
+//         lblEscritorio10.innerText = ticket10.escritorio;
+//     }
+//     if( ticket11 ){
+//         lblTicket11.innerText =  ticket11.numero;
+//         lblEscritorio11.innerText = ticket11.escritorio;
+//     }
+//     if( ticket12 ){
+//         lblTicket12.innerText =  ticket12.numero;
+//         lblEscritorio12.innerText = ticket12.escritorio;
+//     }
+//     if( ticket13 ){
+//         lblTicket13.innerText =  ticket13.numero;
+//         lblEscritorio13.innerText = ticket13.escritorio;
+//     }
+//     if( ticket14 ){
+//         lblTicket14.innerText =  ticket14.numero;
+//         lblEscritorio14.innerText = ticket14.escritorio;
+//     }
+    
+
+
+// });
