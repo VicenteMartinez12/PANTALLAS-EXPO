@@ -69,7 +69,11 @@ socket.on('nuevo-ticket', (payload) => {
     // Actualizar el contenido de los elementos en esa fila con la información del nuevo ticket
     filaEscritorio.querySelector('#lblTicket1').innerText = ticket.numero;
     filaEscritorio.querySelector('#lblEscritorio1').innerText = escritorio;
+
+    // Actualizar la pantalla pública
+    actualizarPantalla();
 });
+
 
 socket.on('actualizar-ticket', (payload) => {
     const { escritorio, ticket } = payload;
@@ -79,6 +83,7 @@ socket.on('actualizar-ticket', (payload) => {
     if (elementoEscritorio && elementoTicket) {
         elementoEscritorio.innerText = escritorio;
         elementoTicket.innerText = ticket.numero;
+      
     }
 });
 

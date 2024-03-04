@@ -71,7 +71,7 @@ class TicketControl {
 
         this.ultimos4.unshift( ticket );
 
-        if ( this.ultimos4.length > 14 ) {
+        if ( this.ultimos4.length > 1 ) {
             this.ultimos4.splice(-1,1);
         }
 
