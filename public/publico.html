@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stand</title>
+<style>
+    .container {
+        display: flex;
+        width: 100%;
+    
+        
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        
+        
+  
+    }
+    .table-container {
+        display: flex;
+        width: 50%;
+        margin-right: 5px;
+    
+     
+        
+    }
+    .proximos{
+        display: flex;
+        flex-direction: column; 
+        width: 33%;
+       
+  
+      
+       
+   
+        
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+        font-size: 58px;
+        font-weight: bold;
+        text-align: center ;
+    }
+    th{
+        background-color: #1d3f93;
+        color: antiquewhite;
+    }
+
+    img {
+        width: 95%; /* Ancho de la imagen al 100% del contenedor */
+        max-width: 400px; /* Ancho máximo de la imagen */
+    }
+
+    
+    .numeros {
+        display: flex;
+              justify-content: space-between;
+  
+              padding: 0 10px;
+              font-size: 50px;
+    
+              width: 98.8%;
+              
+  
+              
+              
+            
+              
+          }
+  
+          @keyframes blink {
+              0% {
+                  background-color: yellow;
+              }
+  
+              50% {
+                  background-color: transparent;
+              }
+  
+              100% {
+                  background-color: yellow;
+              }
+          }
+  
+          .parpadeo {
+              animation: blink 1s infinite;
+          }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <div class="table-container">
+    <table >
+        <tr>
+            <th>Posición</th>
+            <th>Turno</th>
+    
+        </tr>
+        <tr>
+            <td> 1</td>
+            <td valign="middle" class="ticket-actual">
+                <span id="lblTicket1" class="ticket-actual-numero"></span>
+                <br>
+                <span id="lblEscritorio1" class="ticket-actual-escritorio"></span>
+            </td>
+         
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>
+                <span id="lblTicket2" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio2"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>
+                <span id="lblTicket3" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio3"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>
+                <span id="lblTicket4" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio4"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>
+                <span id="lblTicket5" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio5"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>
+                <span id="lblTicket6" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio6"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>
+                <span id="lblTicket7" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio7"></span>
+            </td>
+        </tr>
+       
+
+    </table>
+    </div>
+
+    <div class="table-container">
+    <table>
+      
+        <tr>
+            <th>Posición</th>
+            <th>Turno</th>
+    
+        </tr>
+        <tr>
+            <td> 8</td>
+            <td>
+                <span id="lblTicket8" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio8"></span>
+            </td>
+         
+        </tr>
+        <tr>
+            <td class="parpadeo">9</td>
+            <td>
+                <span id="lblTicket9" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio9"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="parpadeo">10</td>
+            <td>
+                <span id="lblTicket10" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio10"></span>
+            </td>
+        </tr>
+        <tr >
+            <td>11</td>
+            <td>
+                <span id="lblTicket11" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio11"></span>
+            </td>
+        </tr>
+        <tr >
+            <td>12</td>
+            <td>
+                <span id="lblTicket12" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio12"></span>
+            </td>
+        </tr>
+        <tr >
+            <td>13</td>
+            <td>
+                <span id="lblTicket13" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio13"></span>
+            </td>
+        </tr>
+        <tr >
+            <td>14</td>
+            <td>
+                <span id="lblTicket14" class="ticket-secundario"></span>
+                <br>
+                <span id="lblEscritorio14"></span>
+            </td>
+        </tr>
+      
+
+    </table>
+    </div>
+
+
+<div class="proximos">
+
+    <div style="height: 30%; margin-bottom: 1%; ;">  
+        
+        <img src="img/marcas/smarty.png" alt="Descripción de la imagen">
+    
+    </div>
+
+
+    <div >  
+    <table >
+        <tr >
+            <th style="background-color: #e24502">Próximos turnos</th>
+          
+    
+        </tr>
+        <tr>
+            <td style=" background-color: #5bd0ff; ">110</td>
+        </tr>
+        <tr>
+            <td style=" background-color: #5bd0ff; ">111</td>
+        </tr>
+        <tr>
+            <td style=" background-color: #5bd0ff; ">112</td>
+        </tr>
+        <tr>
+            <td style=" background-color: #5bd0ff; ">113</td>
+        </tr>
+        <tr>
+            <td style=" background-color: #5bd0ff; ">114</td>
+        </tr>
+ 
+    </table>
+
+    <script src="./socket.io/socket.io.js"></script>
+    <script src="./js/publico.js"></script>
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
