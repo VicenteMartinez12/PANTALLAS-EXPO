@@ -29,7 +29,11 @@ const lblEscritorio13 = document.querySelector('#lblEscritorio13');
 const lblTicket14 = document.querySelector('#lblTicket14');
 const lblEscritorio14 = document.querySelector('#lblEscritorio14');
 
-
+const proxTurno1 = document.querySelector('#prox-turno-1');
+const proxTurno2 = document.querySelector('#prox-turno-2');
+const proxTurno3 = document.querySelector('#prox-turno-3');
+const proxTurno4 = document.querySelector('#prox-turno-4');
+const proxTurno5 = document.querySelector('#prox-turno-5');
 const socket = io();
 
 // Objeto para almacenar los tickets actuales de cada escritorio
@@ -52,13 +56,36 @@ function actualizarPantalla() {
 }
 
 socket.on('estado-actual', (payload) => {
-    // Actualizar los tickets actuales de cada escritorio
+    // Obtener el último ticket atendido
+
     payload.forEach((ticket) => {
         escritorios[ticket.escritorio] = ticket;
     });
 
     // Actualizar la pantalla pública
     actualizarPantalla();
+
+
+    const ultimoTicketAtendido = payload[payload.length - 1].numero;
+
+    // Calcular los próximos 5 tickets
+    const proximosTickets = [];
+    for (let i = 1; i <= 5; i++) {
+        proximosTickets.push(ultimoTicketAtendido + i);
+    }
+
+    // Actualizar la pantalla pública con los próximos tickets
+    for (let i = 0; i < proximosTickets.length; i++) {
+        const proximoTicket = proximosTickets[i];
+        const spanProxTurno = document.querySelector(`#prox-turno-${i + 1}`);
+        if (proximoTicket <= ultimoTicketAtendido) {
+            // Si el próximo ticket ya fue llamado, dejar el campo en blanco
+            spanProxTurno.innerText = '';
+        } else {
+            // Si hay un próximo ticket, mostrar su número
+            spanProxTurno.innerText = proximoTicket;
+        }
+    }
 });
 socket.on('nuevo-ticket', (payload) => {
     const { escritorio, ticket } = payload;
@@ -86,6 +113,9 @@ socket.on('actualizar-ticket', (payload) => {
       
     }
 });
+
+
+
 
 
 
