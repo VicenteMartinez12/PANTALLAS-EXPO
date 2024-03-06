@@ -124,7 +124,7 @@ socket2.on('recibir-turnos', (payload) => {
         });
 
          // Mostrar solo los próximos turnos disponibles y dejar los demás espacios vacíos
-         for (let i = primeros5TurnosEspera.length + 1; i <= 5; i++) {
+        for (let i = primeros5TurnosEspera.length + 1; i <= 5; i++) {
             const spanProximoTurno = document.querySelector(`#prox-turno-${i}`);
             spanProximoTurno.innerText = ''; // Dejar el espacio vacío
         }
