@@ -123,30 +123,46 @@ socket2.on('recibir-turnos', (payload) => {
             spanProximoTurno.innerText = turno.folioTurno;
         });
 
+         // Mostrar solo los próximos turnos disponibles y dejar los demás espacios vacíos
+         for (let i = primeros5TurnosEspera.length + 1; i <= 5; i++) {
+            const spanProximoTurno = document.querySelector(`#prox-turno-${i}`);
+            spanProximoTurno.innerText = ''; // Dejar el espacio vacío
+        }
+
         // Mostrar los turnos siendo atendidos en las posiciones correspondientes
         turnosSiendoAtendidos.forEach((turno) => {
             const posicion = turno.posicion;
             const folioTurno = turno.folioTurno;
             const status = turno.status;
-        
-            // Verificar si el turno está en estado 'llamando' o 'atendiendo'
-            if (status === 'llamando' || status === 'atendiendo') {
-                // Obtener los elementos correspondientes a la posición en la pantalla
-                const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
-                const elementoTicket = document.getElementById(`lblTicket${posicion}`);
-            
-                if (elementoEscritorio && elementoTicket) {
+
+            // Obtener los elementos correspondientes a la posición en la pantalla
+            const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
+            const elementoTicket = document.getElementById(`lblTicket${posicion}`);
+
+            if (elementoEscritorio && elementoTicket) {
+                if (status === 'llamando') {
+                    // Si el estado es 'llamando', muestra el folioTurno y agrega la clase de parpadeo
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
+                    elementoTicket.classList.add('parpadeo');
+                } else if (status === 'atendiendo') {
+                    // Si el estado es 'atendiendo', muestra el folioTurno sin parpadeo
+                    elementoEscritorio.innerText = posicion;
+                    elementoTicket.innerText = folioTurno;
+                    elementoTicket.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
+                } else {
+                    // Si el estado no es 'llamando' ni 'atendiendo', muestra solo la posición y quita el ticket
+                    elementoEscritorio.innerText = posicion;
+                    elementoTicket.innerText = '';
+                    elementoTicket.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
                 }
             }
         });
     } else {
         console.error('Los datos de turnosEnEspera o turnosSiendoAtendidos no son válidos:', payload);
     }
-    
-    
 });
+
 
 
 
