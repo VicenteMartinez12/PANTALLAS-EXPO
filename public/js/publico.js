@@ -94,7 +94,6 @@ socket.on('actualizar-ticket', (payload) => {
     if (elementoEscritorio && elementoTicket) {
         elementoEscritorio.innerText = escritorio;
         elementoTicket.innerText = ticket.numero;
-      
     }
 });
 
@@ -109,42 +108,45 @@ socket2.on('connect', () => {
 
 //
 socket2.on('recibir-turnos', (payload) => {
+    console.log(payload);
 
-    if (payload && Array.isArray(payload.turnosEnEspera)) {
+    if (payload && Array.isArray(payload.turnosEnEspera) && Array.isArray(payload.turnosSiendoAtendidos)) {
         const turnosEnEspera = payload.turnosEnEspera;
+        const turnosSiendoAtendidos = payload.turnosSiendoAtendidos;
 
-        const primeros5Turnos = turnosEnEspera.slice(0, 5);
+        // Obtener los primeros 5 turnos en espera
+        const primeros5TurnosEspera = turnosEnEspera.slice(0, 5);
 
-        primeros5Turnos.forEach((turno, index) => {
+        // Mostrar los primeros 5 turnos en espera en la pantalla
+        primeros5TurnosEspera.forEach((turno, index) => {
             const spanProximoTurno = document.querySelector(`#prox-turno-${index + 1}`);
             spanProximoTurno.innerText = turno.folioTurno;
         });
 
-        // Guardar los turnos en el localStorage
-        localStorage.setItem('proximosTurnos', JSON.stringify(primeros5Turnos));
+        // Mostrar los turnos siendo atendidos en las posiciones correspondientes
+        turnosSiendoAtendidos.forEach((turno) => {
+            const posicion = turno.posicion;
+            const folioTurno = turno.folioTurno;
+        
+            // Obtener los elementos correspondientes a la posición en la pantalla
+            const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
+            const elementoTicket = document.getElementById(`lblTicket${posicion}`);
+        
+            if (elementoEscritorio && elementoTicket) {
+                elementoEscritorio.innerText = posicion;
+                elementoTicket.innerText = folioTurno;
+            }
+        });
     } else {
-        console.error('Los datos de turnosEnEspera no son válidos:', payload);
+        console.error('Los datos de turnosEnEspera o turnosSiendoAtendidos no son válidos:', payload);
     }
+    
+    
 });
 
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Recuperar los datos del almacenamiento local
-    const proximosTurnosString = localStorage.getItem('proximosTurnos');
 
-    // Verificar si hay datos guardados
-    if (proximosTurnosString) {
-        // Convertir los datos de cadena JSON a objeto JavaScript
-        const proximosTurnos = JSON.parse(proximosTurnosString);
-
-        // Actualizar las etiquetas <span> correspondientes en publico.html
-        proximosTurnos.forEach((turno, index) => {
-            const spanProximoTurno = document.querySelector(`#prox-turno-${index + 1}`);
-            spanProximoTurno.innerText = turno.folioTurno;
-        });
-    }
-});
 
 
 
