@@ -110,15 +110,20 @@ socket2.on('connect', () => {
 //
 socket2.on('recibir-turnos', (payload) => {
 
-    if (payload && payload.turnosEnEspera) {
-        
-        const primeros5Turnos = payload.turnosEnEspera.slice(0, 5);
+    if (payload && Array.isArray(payload.turnosEnEspera)) {
+        const turnosEnEspera = payload.turnosEnEspera;
 
-      
+        const primeros5Turnos = turnosEnEspera.slice(0, 5);
+
         primeros5Turnos.forEach((turno, index) => {
             const spanProximoTurno = document.querySelector(`#prox-turno-${index + 1}`);
             spanProximoTurno.innerText = turno.folioTurno;
         });
+
+        // Guardar los turnos en el localStorage
+        localStorage.setItem('proximosTurnos', JSON.stringify(primeros5Turnos));
+    } else {
+        console.error('Los datos de turnosEnEspera no son válidos:', payload);
     }
 });
 
