@@ -127,14 +127,18 @@ socket2.on('recibir-turnos', (payload) => {
         turnosSiendoAtendidos.forEach((turno) => {
             const posicion = turno.posicion;
             const folioTurno = turno.folioTurno;
+            const status = turno.status;
         
-            // Obtener los elementos correspondientes a la posición en la pantalla
-            const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
-            const elementoTicket = document.getElementById(`lblTicket${posicion}`);
-        
-            if (elementoEscritorio && elementoTicket) {
-                elementoEscritorio.innerText = posicion;
-                elementoTicket.innerText = folioTurno;
+            // Verificar si el turno está en estado 'llamando' o 'atendiendo'
+            if (status === 'llamando' || status === 'atendiendo') {
+                // Obtener los elementos correspondientes a la posición en la pantalla
+                const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
+                const elementoTicket = document.getElementById(`lblTicket${posicion}`);
+            
+                if (elementoEscritorio && elementoTicket) {
+                    elementoEscritorio.innerText = posicion;
+                    elementoTicket.innerText = folioTurno;
+                }
             }
         });
     } else {
