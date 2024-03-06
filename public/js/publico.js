@@ -66,26 +66,10 @@ socket.on('estado-actual', (payload) => {
     actualizarPantalla();
 
 
-    const ultimoTicketAtendido = payload[payload.length - 1].numero;
+
 
     // Calcular los próximos 5 tickets
-    const proximosTickets = [];
-    for (let i = 1; i <= 5; i++) {
-        proximosTickets.push(ultimoTicketAtendido + i);
-    }
-
-    // Actualizar la pantalla pública con los próximos tickets
-    for (let i = 0; i < proximosTickets.length; i++) {
-        const proximoTicket = proximosTickets[i];
-        const spanProxTurno = document.querySelector(`#prox-turno-${i + 1}`);
-        if (proximoTicket <= ultimoTicketAtendido) {
-            // Si el próximo ticket ya fue llamado, dejar el campo en blanco
-            spanProxTurno.innerText = '';
-        } else {
-            // Si hay un próximo ticket, mostrar su número
-            spanProxTurno.innerText = proximoTicket;
-        }
-    }
+    
 });
 socket.on('nuevo-ticket', (payload) => {
     const { escritorio, ticket } = payload;
@@ -115,7 +99,47 @@ socket.on('actualizar-ticket', (payload) => {
 });
 
 
+const socket2 = io('http://10.105.17.44:8000');
 
+socket2.on('connect', () => {
+  console.log('Conectado al servidor emisor');
+});
+
+
+
+//
+socket2.on('recibir-turnos', (payload) => {
+
+    if (payload && payload.turnosEnEspera) {
+        
+        const primeros5Turnos = payload.turnosEnEspera.slice(0, 5);
+
+      
+        primeros5Turnos.forEach((turno, index) => {
+            const spanProximoTurno = document.querySelector(`#prox-turno-${index + 1}`);
+            spanProximoTurno.innerText = turno.folioTurno;
+        });
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Recuperar los datos del almacenamiento local
+    const proximosTurnosString = localStorage.getItem('proximosTurnos');
+
+    // Verificar si hay datos guardados
+    if (proximosTurnosString) {
+        // Convertir los datos de cadena JSON a objeto JavaScript
+        const proximosTurnos = JSON.parse(proximosTurnosString);
+
+        // Actualizar las etiquetas <span> correspondientes en publico.html
+        proximosTurnos.forEach((turno, index) => {
+            const spanProximoTurno = document.querySelector(`#prox-turno-${index + 1}`);
+            spanProximoTurno.innerText = turno.folioTurno;
+        });
+    }
+});
 
 
 
