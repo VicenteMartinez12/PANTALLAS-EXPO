@@ -99,10 +99,10 @@ socket2.on('recibir-turnos', (payload) => {
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
                     elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
-                } else {
-                    // Si el estado no es 'llamando' ni 'atendiendo', quitar la posición y el ticket de la pantalla
-                    elementoEscritorio.innerText = '';
-                    elementoTicket.innerText = '';
+                } else if (status === 'finalizando') {
+                    // Si el estado es 'finalizando', muestra el folioTurno y quita la clase de parpadeo
+                    elementoEscritorio.innerText = posicion;
+                    elementoTicket.innerText = folioTurno;
                     elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
                 }
             }
@@ -115,7 +115,7 @@ socket2.on('recibir-turnos', (payload) => {
                 const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
                 const elementoTicket = document.getElementById(`lblTicket${posicion}`);
                 if (elementoEscritorio && elementoTicket) {
-                    elementoEscritorio.innerText = '';
+                    elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = '';
                     elementoTicket.parentElement.classList.remove('parpadeo');
                 }
@@ -132,86 +132,3 @@ socket2.on('recibir-turnos', (payload) => {
 
 
 
-
-// const socket = io();
-
-
-
-// socket.on('estado-actual', ( payload ) => {
-
-//     const audio = new Audio('./audio/new-ticket.mp3');
-//     audio.play();
-
-
-//     const [ ticket1, ticket2, ticket3, ticket4,ticket5,ticket6,ticket7,ticket8,ticket9,ticket10,ticket11,ticket12,ticket13,ticket14 ] = payload;
-
-//     if( ticket1 ){
-//         lblTicket1.innerText =  ticket1.numero;
-//         lblEscritorio1.innerText = ticket1.escritorio;
-     
-//     }
-    
-//     if( ticket2 ){
-//         lblTicket2.innerText =  ticket2.numero;
-//         lblEscritorio2.innerText = ticket2.escritorio;
-     
-//     }
-    
-//     if( ticket3 ){
-//         lblTicket3.innerText =  ticket3.numero;
-//         lblEscritorio3.innerText = ticket3.escritorio;
-     
-//     }
-    
-//     if( ticket4 ){
-//         lblTicket4.innerText =  ticket4.numero;
-//         lblEscritorio4.innerText = ticket4.escritorio;
-     
-//     }
-//     if( ticket5){
-//         lblTicket5.innerText =  ticket5.numero;
-//         lblEscritorio5.innerText = ticket5.escritorio;
-     
-//     }
-//     if( ticket6 ){
-//         lblTicket6.innerText =  ticket6.numero;
-//         lblEscritorio6.innerText = ticket6.escritorio;
-     
-//     }
-//     if( ticket7 ){
-//         lblTicket7.innerText =  ticket7.numero;
-//         lblEscritorio7.innerText = ticket7.escritorio;
-     
-//     }
-//     if( ticket8 ){
-//         lblTicket8.innerText =  ticket8.numero;
-//         lblEscritorio8.innerText = ticket8.escritorio;
-//     }
-//     if( ticket9 ){
-//         lblTicket9.innerText =  ticket9.numero;
-//         lblEscritorio9.innerText = ticket9.escritorio;
-//     }
-//     if( ticket10 ){
-//         lblTicket10.innerText =  ticket10.numero;
-//         lblEscritorio10.innerText = ticket10.escritorio;
-//     }
-//     if( ticket11 ){
-//         lblTicket11.innerText =  ticket11.numero;
-//         lblEscritorio11.innerText = ticket11.escritorio;
-//     }
-//     if( ticket12 ){
-//         lblTicket12.innerText =  ticket12.numero;
-//         lblEscritorio12.innerText = ticket12.escritorio;
-//     }
-//     if( ticket13 ){
-//         lblTicket13.innerText =  ticket13.numero;
-//         lblEscritorio13.innerText = ticket13.escritorio;
-//     }
-//     if( ticket14 ){
-//         lblTicket14.innerText =  ticket14.numero;
-//         lblEscritorio14.innerText = ticket14.escritorio;
-//     }
-    
-
-
-// });
