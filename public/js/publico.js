@@ -134,27 +134,27 @@ socket2.on('recibir-turnos', (payload) => {
             const posicion = turno.posicion;
             const folioTurno = turno.folioTurno;
             const status = turno.status;
-
+        
             // Obtener los elementos correspondientes a la posición en la pantalla
             const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
             const elementoTicket = document.getElementById(`lblTicket${posicion}`);
-
+        
             if (elementoEscritorio && elementoTicket) {
                 if (status === 'llamando') {
-                    // Si el estado es 'llamando', muestra el folioTurno y agrega la clase de parpadeo
+                    // Si el estado es 'llamando', muestra el folioTurno y agrega la clase de parpadeo a toda la columna de lblTicket
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
-                    elementoTicket.classList.add('parpadeo');
+                    elementoTicket.parentElement.classList.add('parpadeo'); // Agregar la clase de parpadeo al contenedor de lblTicket
                 } else if (status === 'atendiendo') {
                     // Si el estado es 'atendiendo', muestra el folioTurno sin parpadeo
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
-                    elementoTicket.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
+                    elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
                 } else {
                     // Si el estado no es 'llamando' ni 'atendiendo', muestra solo la posición y quita el ticket
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = '';
-                    elementoTicket.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
+                    elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
                 }
             }
         });
