@@ -39,7 +39,6 @@ const socket = io();
 // Objeto para almacenar los tickets actuales de cada escritorio
 const escritorios = {};
 
-// Función para actualizar la pantalla pública con los tickets actuales
 
 
 
@@ -54,14 +53,18 @@ socket2.on('connect', () => {
 });
 
 
+let standId=1;
 
 //
-socket2.on('recibir-turnos', (payload) => {
+socket2.on(`recibir-turnos-${standId}`, (payload) => {
     console.log(payload);
 
     if (payload && Array.isArray(payload.turnosEnEspera) && Array.isArray(payload.turnosSiendoAtendidos)) {
         const turnosEnEspera = payload.turnosEnEspera;
         const turnosSiendoAtendidos = payload.turnosSiendoAtendidos;
+
+        // Limpiar posiciones anteriores
+        limpiarPosiciones();
 
         // Obtener los primeros 5 turnos en espera
         const primeros5TurnosEspera = turnosEnEspera.slice(0, 5);
@@ -107,27 +110,24 @@ socket2.on('recibir-turnos', (payload) => {
                 }
             }
         });
-        
-        // Quitar las posiciones y tickets que ya no están siendo atendidos
-        const posicionesEnPantalla = Array.from(document.querySelectorAll('[id^=lblEscritorio]')).map(elemento => elemento.id.replace('lblEscritorio', ''));
-        posicionesEnPantalla.forEach(posicion => {
-            if (!turnosSiendoAtendidos.some(turno => turno.posicion === posicion)) {
-                const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
-                const elementoTicket = document.getElementById(`lblTicket${posicion}`);
-                if (elementoEscritorio && elementoTicket) {
-                    elementoEscritorio.innerText = posicion;
-                    elementoTicket.innerText = '';
-                    elementoTicket.parentElement.classList.remove('parpadeo');
-                }
-            }
-        });
     } else {
         console.error('Los datos de turnosEnEspera o turnosSiendoAtendidos no son válidos:', payload);
     }
 });
 
-
-
+// Función para limpiar las posiciones y tickets anteriores
+function limpiarPosiciones() {
+    const posicionesEnPantalla = Array.from(document.querySelectorAll('[id^=lblEscritorio]')).map(elemento => elemento.id.replace('lblEscritorio', ''));
+    posicionesEnPantalla.forEach(posicion => {
+        const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
+        const elementoTicket = document.getElementById(`lblTicket${posicion}`);
+        if (elementoEscritorio && elementoTicket) {
+            elementoEscritorio.innerText = posicion;
+            elementoTicket.innerText = '';
+            elementoTicket.parentElement.classList.remove('parpadeo');
+        }
+    });
+}
 
 
 
