@@ -40,62 +40,11 @@ const socket = io();
 const escritorios = {};
 
 // Función para actualizar la pantalla pública con los tickets actuales
-function actualizarPantalla() {
-    for (let escritorio in escritorios) {
-        const lblTicket = document.querySelector(`#lblTicket${escritorio}`);
-        const lblEscritorio = document.querySelector(`#lblEscritorio${escritorio}`);
-
-        if (escritorios[escritorio]) {
-            lblTicket.innerText = escritorios[escritorio].numero;
-            lblEscritorio.innerText = escritorios[escritorio].escritorio;
-        } else {
-            lblTicket.innerText = '';
-            lblEscritorio.innerText = '';
-        }
-    }
-}
-
-socket.on('estado-actual', (payload) => {
-    // Obtener el último ticket atendido
-
-    payload.forEach((ticket) => {
-        escritorios[ticket.escritorio] = ticket;
-    });
-
-    // Actualizar la pantalla pública
-    actualizarPantalla();
 
 
 
 
-    // Calcular los próximos 5 tickets
-    
-});
-socket.on('nuevo-ticket', (payload) => {
-    const { escritorio, ticket } = payload;
 
-    // Identificar el elemento de la tabla correspondiente al escritorio
-    const filaEscritorio = document.getElementById(`escritorio${escritorio}`);
-
-    // Actualizar el contenido de los elementos en esa fila con la información del nuevo ticket
-    filaEscritorio.querySelector('#lblTicket1').innerText = ticket.numero;
-    filaEscritorio.querySelector('#lblEscritorio1').innerText = escritorio;
-
-    // Actualizar la pantalla pública
-    actualizarPantalla();
-});
-
-
-socket.on('actualizar-ticket', (payload) => {
-    const { escritorio, ticket } = payload;
-    const elementoEscritorio = document.getElementById(`lblEscritorio${escritorio}`);
-    const elementoTicket = document.getElementById(`lblTicket${escritorio}`);
-
-    if (elementoEscritorio && elementoTicket) {
-        elementoEscritorio.innerText = escritorio;
-        elementoTicket.innerText = ticket.numero;
-    }
-});
 
 
 const socket2 = io('http://10.105.17.44:8000');
@@ -151,10 +100,24 @@ socket2.on('recibir-turnos', (payload) => {
                     elementoTicket.innerText = folioTurno;
                     elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
                 } else {
-                    // Si el estado no es 'llamando' ni 'atendiendo', muestra solo la posición y quita el ticket
-                    elementoEscritorio.innerText = posicion;
+                    // Si el estado no es 'llamando' ni 'atendiendo', quitar la posición y el ticket de la pantalla
+                    elementoEscritorio.innerText = '';
                     elementoTicket.innerText = '';
                     elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
+                }
+            }
+        });
+        
+        // Quitar las posiciones y tickets que ya no están siendo atendidos
+        const posicionesEnPantalla = Array.from(document.querySelectorAll('[id^=lblEscritorio]')).map(elemento => elemento.id.replace('lblEscritorio', ''));
+        posicionesEnPantalla.forEach(posicion => {
+            if (!turnosSiendoAtendidos.some(turno => turno.posicion === posicion)) {
+                const elementoEscritorio = document.getElementById(`lblEscritorio${posicion}`);
+                const elementoTicket = document.getElementById(`lblTicket${posicion}`);
+                if (elementoEscritorio && elementoTicket) {
+                    elementoEscritorio.innerText = '';
+                    elementoTicket.innerText = '';
+                    elementoTicket.parentElement.classList.remove('parpadeo');
                 }
             }
         });
