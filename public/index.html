@@ -25,6 +25,7 @@
 
 
     <script>
+        var selectedStandId; 
         document.addEventListener('DOMContentLoaded', function() {
             // Realizar solicitud HTTP para obtener los stands
             fetch('http://10.105.17.44:8000/stands/getallstands')
@@ -54,19 +55,22 @@
                     console.error('Error al obtener los stands:', error);
                 });
         });
-    
-        // Función para redirigir a la URL correspondiente cuando se selecciona una opción en el select
         function redirectToSelectedPage() {
-            // Obtener el select y la opción seleccionada
             const selector = document.getElementById('selector');
             const selectedOption = selector.options[selector.selectedIndex];
+            const selectedOptionId = selectedOption.value; // Obtener el ID seleccionado
     
-            // Obtener la URL de la opción seleccionada
-            const selectedOptionUrl = selectedOption.getAttribute('data-url');
+            // Enviar el ID seleccionado a publico.js mediante una variable global
+            selectedStandId = selectedOptionId;
+            console.log(selectedStandId);
     
             // Redirigir a la página correspondiente
-            window.location.href = selectedOptionUrl;
+            const selectedOptionUrl = selectedOption.getAttribute('data-url');
+            window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}`;
+
         }
+
+        localStorage.setItem('selectedStandId', selectedStandId);
     </script>
 </body>
 

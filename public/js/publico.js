@@ -36,29 +36,29 @@ const proxTurno4 = document.querySelector('#prox-turno-4');
 const proxTurno5 = document.querySelector('#prox-turno-5');
 const socket = io();
 
+
+
 // Objeto para almacenar los tickets actuales de cada escritorio
 const escritorios = {};
-
-
-
-
-
-
-
-
+const selectedStandId = localStorage.getItem('selectedStandId');
+  const id = selectedStandId; 
 const socket2 = io('http://10.105.17.44:8000');
+
 
 socket2.on('connect', () => {
   console.log('Conectado al servidor emisor');
-});
+  const selectedStandId = localStorage.getItem('selectedStandId');
+  const id = selectedStandId; 
+  console.log(id);
 
 
-let standId=1;
+
 
 //
-socket2.on(`recibir-turnos-${standId}`, (payload) => {
+socket2.on(`recibir-turnos-${id}`, (payload) => {
     console.log(payload);
-
+  
+    console.log(id);
     if (payload && Array.isArray(payload.turnosEnEspera) && Array.isArray(payload.turnosSiendoAtendidos)) {
         const turnosEnEspera = payload.turnosEnEspera;
         const turnosSiendoAtendidos = payload.turnosSiendoAtendidos;
@@ -93,27 +93,29 @@ socket2.on(`recibir-turnos-${standId}`, (payload) => {
         
             if (elementoEscritorio && elementoTicket) {
                 if (status === 'llamando') {
-                    // Si el estado es 'llamando', muestra el folioTurno y agrega la clase de parpadeo a toda la columna de lblTicket
+                    
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
-                    elementoTicket.parentElement.classList.add('parpadeo'); // Agregar la clase de parpadeo al contenedor de lblTicket
+                    elementoTicket.parentElement.classList.add('parpadeo');
                 } else if (status === 'atendiendo') {
-                    // Si el estado es 'atendiendo', muestra el folioTurno sin parpadeo
+               
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
-                    elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
+                    elementoTicket.parentElement.classList.remove('parpadeo'); 
                 } else if (status === 'finalizando') {
-                    // Si el estado es 'finalizando', muestra el folioTurno y quita la clase de parpadeo
+            
                     elementoEscritorio.innerText = posicion;
                     elementoTicket.innerText = folioTurno;
-                    elementoTicket.parentElement.classList.remove('parpadeo'); // Asegúrate de eliminar la clase de parpadeo si está presente
+                    elementoTicket.parentElement.classList.remove('parpadeo'); 
                 }
             }
         });
+        
     } else {
         console.error('Los datos de turnosEnEspera o turnosSiendoAtendidos no son válidos:', payload);
     }
-});
+});});
+
 
 // Función para limpiar las posiciones y tickets anteriores
 function limpiarPosiciones() {
