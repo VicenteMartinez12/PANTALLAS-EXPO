@@ -30,6 +30,7 @@
         margin: 20px auto; /* Margen para centrar horizontalmente */
         padding: 10px; /* Añade un espacio interno */
         display: block; /* Hace que el select sea un bloque */
+       border-radius: 5px;
     }
        
        .shadow {
@@ -37,6 +38,11 @@
                     0 0  0 2px rgb(190, 190, 190),
                     0.3em 0.3em 1em rgba(0,0,0,0.3);
        }
+       .card h1 {
+        margin-top: 5px; /* Ajusta según sea necesario */
+        text-align: center;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
        
   </style>
        
@@ -44,10 +50,10 @@
 
 <body class="container">
     <div  class="card shadow">
-        <img src="img/">
-        <h1 class="mt-5" style="text-align: center;">Selecciona el stand</h1>
-        <select id="selector" onchange="redirectToSelectedPage()">
-            <option >Selecciona el stand correspondiente</option>
+        <img src="/img/expo.png" style="width: 300px; margin-left:  60px; margin-top: 30px;">
+        <h1 class="mt-5" style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Selecciona el stand</h1>
+        <select id="selector" onchange="redirectToSelectedPage()" >
+            <option style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ">Selecciona el stand correspondiente</option>
         </select>
     </div>
        
