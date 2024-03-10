@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasillo Turnero</title>
+    <style>
+        .tabla {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 2%;
+        }
+
+       
+
+     
+        .tabla td {
+           
+            padding: 8px;
+            border: 1px solid black;
+            font-size: 80px;
+            font-weight: bold;
+            align-items: center;
+            text-align: center;
+           
+           
+            
+        }
+        .tabla th{
+            padding: 8px;
+            border: 1px solid black;
+            font-size: 80px;
+            font-weight: bold;
+        }
+
+        .tabla tr {
+            height: 100px;
+            /* Establece una altura fija para todas las filas */
+        }
+
+        .tabla img {
+            max-width: 300px;
+            /* Establece el ancho máximo */
+            max-height: 100px;
+            /* Establece la altura máxima */
+        }
+
+        .tabla td:last-child {
+            text-align: left;
+            /* Alinea el contenido de la última columna a la izquierda */
+            font-size: 130px;
+            margin-right: 10%;
+          
+        }
+
+        .numeros {
+      display: flex;
+            justify-content: space-between;
+
+            padding: 0 10px;
+            font-size: 50px;
+  
+            width: 98.8%;
+            
+
+            
+            
+          
+            
+        }
+
+        @keyframes blink {
+            0% {
+                background-color: yellow;
+            }
+
+            50% {
+                background-color: transparent;
+            }
+
+            100% {
+                background-color: yellow;
+            }
+        }
+
+        .parpadeo {
+            animation: blink 1s infinite;
+        }
+     
+    
+   
+        
+    </style>
+</head>
+
+<body>
+    <div style="display: flex; align-items: center;">
+        <div style="max-width: 100%; width: 100%; height: 100%;">
+            <div style="height: 100%; display: flex; flex-direction: column;">
+                <div style=" justify-content: center; align-items: center; height: 100%; margin-top: 0%;">
+                    <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
+                        <thead>
+                            <tr>
+                                <th style="font-size: 100px; background-color: #1d3f93; color: antiquewhite; text-align: center;"><img src="img/expo.PNG" alt=""></th>
+                                <th style="font-size: 100px; background-color: #1d3f93; color: antiquewhite;    text-align: center; ">Próximos turnos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td  style="background-color: rgb(198, 232, 251);"><img src="/img/marcas/expo.png" alt=""></td>
+                                <td  class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                    <div class="parpadeo">15</div>
+                                    <div class="parpadeo">16</div>
+                                    <div class="parpadeo">17</div>
+                                    <div>18</div>
+                                    <div>19</div>
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="img/marcas/newell.png" alt=""></td>
+                                <td style="align-content: center;" class="numeros">
+                                    <div class="parpadeo">12</div>
+                                    <div class="parpadeo">13</div>
+                                    <div>14</div>
+                                    <div>15</div>
+                                    <div>16</div>
+                                   
+                                    
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  style="background-color: rgb(198, 232, 251);"><img src="img/marcas/norma.png" alt=""></td>
+                                <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                    <div>25</div>
+                                    <div>26</div>
+                                    <div>27</div>
+                                    <div>28</div>
+                                    <div>29</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="img/marcas/smart.png" alt=""></td>
+                                <td class="numeros">
+                                    <div class="parpadeo">108</div>
+                                    <div class="parpadeo">109</div>
+                                    <div>110</div>
+                                    <div>111</div>
+                                    <div>112</div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td  style="background-color: rgb(198, 232, 251);"><img src="img/marcas/scribe.png" alt=""></td>
+                                <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                    <div class="parpadeo">35</div>
+                                    <div>36</div>
+                                    <div>37</div>
+                                    <div>38</div>
+                                    <div>39</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //setTimeout(function() {
+         //   window.location.href = 'pasillo2.html';
+       // }, 20000);
+    </script>
+</body>
+
+</html>
