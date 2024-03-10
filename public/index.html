@@ -5,24 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Stands</title>
+    <title>Programa de Colas</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  
+  <style>
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         /* Ajusta la altura del contenedor al 100% del viewport */
+    }
+
+    .card {
+        margin-top: 70px;
+        width: 400px; 
+        height: 450px; 
+        background-color: white;
+        border-radius: 10px;
+        transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        
+       }
+       select {
+        width: 80%; /* Ancho del select */
+        margin: 20px auto; /* Margen para centrar horizontalmente */
+        padding: 10px; /* Añade un espacio interno */
+        display: block; /* Hace que el select sea un bloque */
+    }
+       
+       .shadow {
+        box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
+                    0 0  0 2px rgb(190, 190, 190),
+                    0.3em 0.3em 1em rgba(0,0,0,0.3);
+       }
+       
+  </style>
+       
 </head>
 
 <body class="container">
-    <h1 class="mt-5">Selecciona el stand</h1>
-    <select id="selector" onchange="redirectToSelectedPage()">
-        <option >Selecciona el stand correspondiente</option>
-    </select>
-    <div class="row">
-        <div class="col-6">
-
-
-        </div>
-
+    <div  class="card shadow">
+        <img src="img/expo.PNG">
+        <h1 class="mt-5" style="text-align: center;">Selecciona el stand</h1>
+        <select id="selector" onchange="redirectToSelectedPage()">
+            <option >Selecciona el stand correspondiente</option>
+        </select>
     </div>
-
+       
 
     <script>
         var selectedStandId; 
@@ -72,6 +100,7 @@
 
         localStorage.setItem('selectedStandId', selectedStandId);
     </script>
+
 </body>
 
 </html>
