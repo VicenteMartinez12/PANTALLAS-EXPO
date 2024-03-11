@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stand</title>
+    <style>
+      .container {
+        display: flex;
+        width: 100%;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .table-container {
+        display: flex;
+        width: 50%;
+        margin-right: 5px;
+      }
+      .proximos {
+        display: flex;
+        flex-direction: column;
+        width: 33%;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+        font-size: 58px;
+        font-weight: bold;
+        text-align: center;
+      }
+      th {
+        background-color: #1d3f93;
+        color: antiquewhite;
+      }
+
+      img {
+        width: 95%; /* Ancho de la imagen al 100% del contenedor */
+        max-width: 400px; /* Ancho máximo de la imagen */
+      }
+
+      .numeros {
+        display: flex;
+        justify-content: space-between;
+
+        padding: 0 10px;
+        font-size: 50px;
+
+        width: 98.8%;
+      }
+
+      @keyframes blink {
+        0% {
+          background-color: yellow;
+        }
+
+        50% {
+          background-color: transparent;
+        }
+
+        100% {
+          background-color: yellow;
+        }
+      }
+
+      .parpadeo {
+        animation: blink 1s infinite;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Primera tabla de la pantalla del stand -->
+    <div class="container">
+      <div class="table-container">
+        <table>
+          <tr>
+            <th>Posición</th>
+            <th>Turno</th>
+          </tr>
+          <tr>
+            <td>
+              <span id="lblEscritorio1" class="ticket-actual-escritorio"></span>
+            </td>
+            <td valign="middle" class="ticket-actual">
+              <span id="lblTicket1" class="ticket-actual-numero"></span>
+              <br />
+              <span id="lblEscritorio1" class="ticket-actual-escritorio"></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblEscritorio2"></span>
+            </td>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblTicket2" class="ticket-secundario"></span>
+              <br />
+              <span id="lblEscritorio2"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio3"></span></td>
+            <td>
+              <span id="lblTicket3" class="ticket-secundario"></span>
+              <br />
+              <span id="lblEscritorio3"></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblEscritorio4"></span>
+            </td>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblTicket4" class="ticket-secundario"></span>
+              <br />
+              <span id="lblEscritorio4"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio5"></span></td>
+            <td>
+              <span id="lblTicket5" class="ticket-secundario"></span>
+              <br />
+              <span id="lblEscritorio5"></span>
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblEscritorio6"></span>
+            </td>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblTicket6" class="ticket-secundario"></span>
+              <br />
+              <span id="lblEscritorio6"></span>
+            </td>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio7"></span></td>
+            <td>
+              <span id="lblTicket7" class="ticket-secundario"></span>
+              <br />
+              <span id="lblEscritorio7"></span>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <!-- Segundo tabla -->
+      <div class="table-container">
+        <table>
+          <tr>
+            <th>Posición</th>
+            <th>Turno</th>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio8"></span></td>
+            <td>
+              <span id="lblTicket8" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblEscritorio9"></span>
+            </td>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblTicket9" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio10"></span></td>
+            <td>
+              <span id="lblTicket10" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblEscritorio11"></span>
+            </td>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblTicket11" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio12"></span></td>
+            <td>
+              <span id="lblTicket12" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblEscritorio13"></span>
+            </td>
+            <td style="background-color: rgb(198, 232, 251)">
+              <span id="lblTicket13" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+          <tr>
+            <td><span id="lblEscritorio14"></span></td>
+            <td>
+              <span id="lblTicket14" class="ticket-secundario"></span>
+              <br />
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- Tercera tabla -->
+      <div class="proximos">
+        <div style="margin-bottom: 1%; max-width: 100%">
+          <img src="" alt="Descripción de la imagen" style="max-width: 100%" />
+        </div>
+
+        <div>
+          <table>
+            <tr>
+              <th style="background-color: #e24502">Próximos turnos</th>
+            </tr>
+            <tr>
+              <td style="background-color: #ffffbf">
+                  <span id="prox-turno-1"></span>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #ffffbf">
+                  <span id="prox-turno-2"></span>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #ffffbf">
+                  <span id="prox-turno-3"></span>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #ffffbf">
+                  <span id="prox-turno-4"></span>
+              </td>
+            </tr>
+            <tr>
+              <td style="background-color: #ffffbf">
+                  <span id="prox-turno-5"></span>
+              </td>
+            </tr>
+          </table>
+
+          <script src="./socket.io/socket.io.js"></script>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Referencias HTML
+      const lblTicket1 = document.querySelector("#lblTicket1");
+      const lblEscritorio1 = document.querySelector("#lblEscritorio1");
+      const lblTicket2 = document.querySelector("#lblTicket2");
+      const lblEscritorio2 = document.querySelector("#lblEscritorio2");
+      const lblTicket3 = document.querySelector("#lblTicket3");
+      const lblEscritorio3 = document.querySelector("#lblEscritorio3");
+      const lblTicket4 = document.querySelector("#lblTicket4");
+      const lblEscritorio4 = document.querySelector("#lblEscritorio4");
+      const lblTicket5 = document.querySelector("#lblTicket5");
+      const lblEscritorio5 = document.querySelector("#lblEscritorio5");
+      const lblTicket6 = document.querySelector("#lblTicket6");
+      const lblEscritorio6 = document.querySelector("#lblEscritorio6");
+      const lblTicket7 = document.querySelector("#lblTicket7");
+      const lblEscritorio7 = document.querySelector("#lblEscritorio7");
+      const lblTicket8 = document.querySelector("#lblTicket8");
+      const lblEscritorio8 = document.querySelector("#lblEscritorio8");
+      const lblTicket9 = document.querySelector("#lblTicket9");
+      const lblEscritorio9 = document.querySelector("#lblEscritorio9");
+      const lblTicket10 = document.querySelector("#lblTicket10");
+      const lblEscritorio10 = document.querySelector("#lblEscritorio10");
+      const lblTicket11 = document.querySelector("#lblTicket11");
+      const lblEscritorio11 = document.querySelector("#lblEscritorio11");
+      const lblTicket12 = document.querySelector("#lblTicket12");
+      const lblEscritorio12 = document.querySelector("#lblEscritorio12");
+      const lblTicket13 = document.querySelector("#lblTicket13");
+      const lblEscritorio13 = document.querySelector("#lblEscritorio13");
+      const lblTicket14 = document.querySelector("#lblTicket14");
+      const lblEscritorio14 = document.querySelector("#lblEscritorio14");
+
+      const proxTurno1 = document.querySelector("#prox-turno-1");
+      const proxTurno2 = document.querySelector("#prox-turno-2");
+      const proxTurno3 = document.querySelector("#prox-turno-3");
+      const proxTurno4 = document.querySelector("#prox-turno-4");
+      const proxTurno5 = document.querySelector("#prox-turno-5");
+      const socket = io();
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const selectedStandId = urlParams.get("standId");
+
+      // Usar el ID del stand como necesites en tu código
+      console.log(selectedStandId);
+      // Objeto para almacenar los tickets actuales de cada escritorio
+      const escritorios = {};
+
+      const socket2 = io("http://10.105.17.44:8000");
+
+      socket2.on("connect", () => {
+        console.log("Conectado al servidor emisor");
+
+        const id = selectedStandId;
+        console.log(id);
+
+        console.log();
+
+        //
+        socket2.on(`recibir-turnos-${id}`, (payload) => {
+          const id = selectedStandId;
+          console.log(id);
+
+          console.log(payload);
+
+          // Establecer la URL de la imagen en la etiqueta <img>
+
+          if (
+            payload &&
+            Array.isArray(payload.turnosEnEspera) &&
+            Array.isArray(payload.turnosSiendoAtendidos)
+          ) {
+            const turnosEnEspera = payload.turnosEnEspera;
+            const turnosSiendoAtendidos = payload.turnosSiendoAtendidos;
+
+            // Limpiar posiciones anteriores
+            limpiarPosiciones();
+
+            // Obtener los primeros 5 turnos en espera
+            const primeros5TurnosEspera = turnosEnEspera.slice(0, 5);
+
+            // Mostrar los primeros 5 turnos en espera en la pantalla
+            primeros5TurnosEspera.forEach((turno, index) => {
+              const spanProximoTurno = document.querySelector(
+                `#prox-turno-${index + 1}`
+              );
+              spanProximoTurno.innerText = turno.folioTurno;
+            });
+
+            // Mostrar solo los próximos turnos disponibles y dejar los demás espacios vacíos
+            for (let i = primeros5TurnosEspera.length + 1; i <= 5; i++) {
+              const spanProximoTurno = document.querySelector(
+                `#prox-turno-${i}`
+              );
+              spanProximoTurno.innerText = ""; // Dejar el espacio vacío
+            }
+
+            // Mostrar los turnos siendo atendidos en las posiciones correspondientes
+
+            if (turnosSiendoAtendidos.length > 0) {
+                turnosSiendoAtendidos.forEach((turno) => {
+                    const posicion = turno.posicion;
+                    const folioTurno = turno.folioTurno;
+                    const status = turno.status;
+      
+                    // Obtener los elementos correspondientes a la Asesor en la pantalla
+                    const elementoEscritorio = document.getElementById(
+                      `lblEscritorio${posicion}`
+                    );
+                    const elementoTicket = document.getElementById(
+                      `lblTicket${posicion}`
+                    );
+      
+                    if (elementoEscritorio && elementoTicket) {
+                      if (status === "llamando") {
+                        // Si el estado es 'llamando', muestra el folioTurno y agrega la clase de parpadeo a toda la columna de lblTicket
+                        elementoEscritorio.innerText = posicion;
+                        elementoTicket.innerText = folioTurno;
+                        elementoEscritorio.parentElement.classList.add("parpadeo");
+                        elementoTicket.parentElement.classList.add("parpadeo"); // Agregar la clase de parpadeo al contenedor de lblTicket
+                        console.log("llama");
+                      } else if (status === "atendiendo") {
+                        // Si el estado es 'atendiendo', muestra el folioTurno sin parpadeo
+                        elementoEscritorio.innerText = posicion;
+                        elementoTicket.innerText = folioTurno;
+                        elementoEscritorio.parentElement.classList.remove("parpadeo");
+                        elementoTicket.parentElement.classList.remove("parpadeo"); // Asegúrate de eliminar la clase de parpadeo si está presente
+                        console.log("ate");
+                      } else {
+                        // Si el estado es 'finalizando', muestra el folioTurno y quita la clase de parpadeo
+                        elementoEscritorio.innerText = posicion;
+                        elementoTicket.innerText = folioTurno;
+                        elementoEscritorio.parentElement.classList.remove("parpadeo");
+                        elementoTicket.parentElement.classList.remove("parpadeo"); // Asegúrate de eliminar la clase de parpadeo si está presente
+                        console.log("else");
+                      }
+                    } else {
+                      elementoEscritorio.innerText = posicion;
+                      elementoTicket.innerText = folioTurno;
+                      elementoEscritorio.parentElement.classList.remove("parpadeo");
+                      elementoTicket.parentElement.classList.remove("parpadeo"); // Asegúrate de eliminar la clase de parpadeo si está presente
+                      console.log("else");
+                    }
+                  });
+                
+            }else{
+              
+            }
+
+           
+          } else {
+            console.error(
+              "Los datos de turnosEnEspera o turnosSiendoAtendidos no son válidos:",
+              payload
+            );
+          }
+        });
+      });
+
+      // Función para limpiar las posiciones y tickets anteriores
+      function limpiarPosiciones() {
+        const posicionesEnPantalla = Array.from(
+          document.querySelectorAll("[id^=lblEscritorio]")
+        ).map((elemento) => elemento.id.replace("lblEscritorio", ""));
+        posicionesEnPantalla.forEach((posicion) => {
+          const elementoEscritorio = document.getElementById(
+            `lblEscritorio${posicion}`
+          );
+          const elementoTicket = document.getElementById(
+            `lblTicket${posicion}`
+          );
+          if (elementoEscritorio && elementoTicket) {
+            elementoEscritorio.innerText = posicion;
+            elementoTicket.innerText = "";
+            elementoTicket.parentElement.classList.remove("parpadeo");
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Obtener los parámetros de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedStandId = urlParams.get("standId");
+        const selectedImageName = urlParams.get("image"); // Obtener el nombre de la imagen
+
+        // Construir la URL completa de la imagen utilizando el nombre de la imagen recibido
+        const imageURL = `http://10.105.17.44:8000/imagenes/${selectedImageName}`;
+
+        // Establecer la URL de la imagen en la etiqueta <img>
+        const imgElement = document.querySelector(".proximos img");
+        imgElement.src = imageURL;
+        imgElement.alt = selectedImageName; // Asignar el nombre de la imagen al atributo alt
+        console.log(selectedImageName);
+      });
+    </script>
+  </body>
+</html>
+<!-- {"ultimo":0,"hoy":0,"tickets":[],"ultimos4":[]} -->
