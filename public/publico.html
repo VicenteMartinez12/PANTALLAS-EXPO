@@ -53,6 +53,7 @@
     img {
         width: 95%; /* Ancho de la imagen al 100% del contenedor */
         max-width: 400px; /* Ancho máximo de la imagen */
+    
     }
 
     
@@ -236,7 +237,7 @@
    <!-- Tercera tabla -->
 <div class="proximos">
 
-    <div style=" margin-bottom: 1%;   max-width: 100%; ; ">  
+    <div style=" margin-bottom: 1%;   max-width: 100%; ;  ">  
         
         <img   src=""    alt="Descripción de la imagen" style="  max-width: 100%;">
     
@@ -244,7 +245,7 @@
 
 
     <div >  
-    <table >
+    <table  >
         <tr >
             <th style="background-color: #e24502">Próximos turnos</th>
           
@@ -423,8 +424,21 @@ function limpiarPosiciones() {
 
 
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener los parámetros de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedStandId = urlParams.get('standId');
+    const selectedImageName = urlParams.get('image'); // Obtener el nombre de la imagen
 
+    // Construir la URL completa de la imagen utilizando el nombre de la imagen recibido
+    const imageURL = `http://10.105.17.44:8000/imagenes/${selectedImageName}`;
 
+    // Establecer la URL de la imagen en la etiqueta <img>
+    const imgElement = document.querySelector('.proximos img');
+    imgElement.src = imageURL;
+    imgElement.alt = selectedImageName; // Asignar el nombre de la imagen al atributo alt
+    console.log(selectedImageName)
+});
 
 
 </script>

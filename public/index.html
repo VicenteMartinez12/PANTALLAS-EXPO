@@ -79,6 +79,7 @@
                             option.value = stand.id; // Establecer el valor de la opción como el ID del stand
                             option.textContent = stand.standName; // Establecer el texto de la opción como el nombre del stand
                             option.setAttribute('data-url', 'publico.html'); // Establecer el atributo de datos para la URL de la página
+                            option.setAttribute('data-image', stand.image); 
                             selector.appendChild(option); // Agregar la opción al select
                         });
                     } else {
@@ -93,18 +94,23 @@
             const selector = document.getElementById('selector');
             const selectedOption = selector.options[selector.selectedIndex];
             const selectedOptionId = selectedOption.value; // Obtener el ID seleccionado
-    
+
+           
+            const selectedOptionImage = selectedOption.getAttribute('data-image'); // Obtener el nombre de la imagen del stand seleccionado
+            console.log(selectedOptionImage)
             // Enviar el ID seleccionado a publico.js mediante una variable global
             selectedStandId = selectedOptionId;
             console.log(selectedStandId);
     
             // Redirigir a la página correspondiente
             const selectedOptionUrl = selectedOption.getAttribute('data-url');
-            window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}`;
+            window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}&image=${selectedOptionImage}`;
 
         }
 
         localStorage.setItem('selectedStandId', selectedStandId);
+
+        
     </script>
 
 </body>
