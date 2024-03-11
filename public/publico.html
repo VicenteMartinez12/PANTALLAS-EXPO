@@ -238,7 +238,7 @@
 
     <div style=" margin-bottom: 1%;   max-width: 100%; ; ">  
         
-        <img src="http://10.105.17.44:8000/imagenes/imagen-1709928070906-888260410-tony.png" alt="Descripción de la imagen" style="  max-width: 100%;">
+        <img   src=""    alt="Descripción de la imagen" style="  max-width: 100%;">
     
     </div>
 
@@ -334,10 +334,18 @@ socket2.on('connect', () => {
 
 //
 socket2.on(`recibir-turnos-${id}`, (payload) => {
-    console.log(payload);
+ 
 
   const id = selectedStandId; 
     console.log(id);
+
+
+   
+
+  
+
+    // Establecer la URL de la imagen en la etiqueta <img>
+   
     if (payload && Array.isArray(payload.turnosEnEspera) && Array.isArray(payload.turnosSiendoAtendidos)) {
         const turnosEnEspera = payload.turnosEnEspera;
         const turnosSiendoAtendidos = payload.turnosSiendoAtendidos;
