@@ -43,6 +43,14 @@
         text-align: center;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     }
+    button{
+        width: 80%; /* Ancho del select */
+        margin: 20px auto; /* Margen para centrar horizontalmente */
+        padding: 10px; /* Añade un espacio interno */
+        display: block; /* Hace que el select sea un bloque */
+       border-radius: 5px;
+
+    }
        
   </style>
        
@@ -50,15 +58,23 @@
 
 <body class="container">
     <div  class="card shadow">
-        <img src="/img/expo.png" style="width: 300px; margin-left:  60px; margin-top: 30px;">
-        <h1 class="mt-5" style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Selecciona el stand</h1>
+        <img src="./img/expoTony.png" style="width: 300px; margin-left:  60px; margin-top: 30px;">
+        <h1 class="mt-5" style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Selecciona el stand o pasillo</h1>
         <select id="selector" onchange="redirectToSelectedPage()" >
             <option style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ">Selecciona el stand correspondiente</option>
         </select>
+        <button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; " onclick="redireccionar()">   PASILLO</button>
+
     </div>
+
+    
        
 
     <script>
+        function redireccionar() {
+            // Redireccionar a la página deseada
+            window.location.href = "pasillo.html";
+        }
         var selectedStandId; 
         document.addEventListener('DOMContentLoaded', function() {
             // Realizar solicitud HTTP para obtener los stands

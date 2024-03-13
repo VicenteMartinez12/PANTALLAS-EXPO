@@ -104,8 +104,8 @@
                     <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
                         <thead>
                             <tr>
-                                <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="/img/marcas/expoTony.png" alt=""></th>
-                                <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="/img/expoTony.png" alt=""></th>
+                                <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
+                                <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
                             </tr>
                         </thead>
                         <tbody id="tablaBody">
@@ -177,11 +177,13 @@
         socket2.on('connect', () => {
             console.log('Conectado al servidor emisor');
           });
+          
 
 
           socket2.on('recibir-turnos-pasillo', (payload) => {
-            const lastIndex = payload.length - 1; // Índice del último elemento en el arreglo
-            console.log(payload.slice(Math.max(lastIndex - 4, 0))); // Mostrar los últimos 5 elementos del arreglo
+            const lastIndex = payload.length - 1;
+            console.log(payload.slice(Math.max(lastIndex - 4, 0)));
+        
             payload.slice(Math.max(lastIndex - 4, 0)).forEach((data, index) => {
                 const fila = document.getElementById(`fila-${index + 1}`);
                 if (fila) {
@@ -190,17 +192,32 @@
                         const divsNumeros = celdaNumeros.querySelectorAll('div');
                         data.forEach((item, i) => {
                             if (divsNumeros[i]) {
-                                divsNumeros[i].textContent = item.folioTurno || '';
+                                if (item.folioTurno) {
+                                    divsNumeros[i].textContent = item.folioTurno;
+                                    if (item.status === 'llamando') {
+                                        divsNumeros[i].classList.add('parpadeo');
+                                    } else {
+                                        divsNumeros[i].classList.remove('parpadeo');
+                                    }
+                                } else {
+                                    divsNumeros[i].textContent = '';
+                                    divsNumeros[i].classList.remove('parpadeo');
+                                }
                             }
                         });
-
-                        // Llenar con espacios vacíos si no hay suficientes turnos
+        
                         for (let i = data.length; i < divsNumeros.length; i++) {
-                            divsNumeros[i].textContent = '\u00A0'; // Espacio en blanco
+                            divsNumeros[i].textContent = '\u00A0';
+                            divsNumeros[i].classList.remove('parpadeo');
                         }
                     }
                 }
             });
+        
+            // Remover el parpadeo cuando no hay turnos o el arreglo de turnos está vacío
+            if (payload.every(data => data.length === 0)) {
+                limpiarParpadeo();
+            }
         });
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -223,6 +240,15 @@
                     console.error('Error al obtener los stands:', error);
                 });
         });
+
+
+        // Función para limpiar el parpadeo de los números cuando no hay ticket
+function limpiarParpadeo() {
+    const numerosEnPantalla = Array.from(document.querySelectorAll('[class=numeros] div')).filter(div => div.textContent.trim() !== '');
+    numerosEnPantalla.forEach(div => {
+        div.classList.remove('parpadeo');
+    });
+}
     </script>
 </body>
 
