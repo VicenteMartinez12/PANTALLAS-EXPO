@@ -181,9 +181,7 @@
 
           socket2.on('recibir-turnos-pasillo', (payload) => {
             const lastIndex = payload.length - 1; // Índice del último elemento en el arreglo
-        
             console.log(payload.slice(Math.max(lastIndex - 4, 0))); // Mostrar los últimos 5 elementos del arreglo
-        
             payload.slice(Math.max(lastIndex - 4, 0)).forEach((data, index) => {
                 const fila = document.getElementById(`fila-${index + 1}`);
                 if (fila) {
@@ -195,10 +193,10 @@
                                 divsNumeros[i].textContent = item.folioTurno || '';
                             }
                         });
-        
-                        // Limpiar los divs restantes si es necesario
+
+                        // Llenar con espacios vacíos si no hay suficientes turnos
                         for (let i = data.length; i < divsNumeros.length; i++) {
-                            divsNumeros[i].textContent = '';
+                            divsNumeros[i].textContent = '\u00A0'; // Espacio en blanco
                         }
                     }
                 }
