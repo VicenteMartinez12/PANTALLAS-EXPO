@@ -162,15 +162,9 @@
             console.log('Conectado al servidor emisor');
           });
 
-
-
         
-      
-    
-  
-  
-            
           socket2.on('recibir-turnos-pasillo', (payload) => {
+            console.log(payload)
             // Mostrar los últimos 5 elementos del arreglo
             const lastIndex = payload.length - 1;
             console.log(payload.slice(Math.max(lastIndex - 4, 0)));
