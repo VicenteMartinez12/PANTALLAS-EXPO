@@ -111,7 +111,7 @@
                         <tbody id="tablaBody">
                             <tr id="fila-1">
                                 <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-1"></td>
-                                <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
+                                <td id="turno-1" class= "numeros"  style="background-color: rgb(198, 232, 251);">
                                     <div >  </div>
                                     <div > </div>
                                     <div > </div>
@@ -122,7 +122,7 @@
                             </tr>
                             <tr id="fila-2">
                                 <td><img src="" alt="" id="imagen-2"></td>
-                                <td style="align-content: center;" class="numeros">
+                                <td id="turno-2" style="align-content: center;" class="numeros">
                                     <div > </div>
                                     <div > </div>
                                     <div> </div>
@@ -134,7 +134,7 @@
                             </tr>
                             <tr id="fila-3">
                                 <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-3"></td>
-                                <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                <td id="turno-3" class="numeros"  style="background-color: rgb(198, 232, 251);">
                                     <div> </div>
                                     <div> </div>
                                     <div> </div>
@@ -144,7 +144,7 @@
                             </tr>
                             <tr id="fila-4">
                                 <td><img src="" alt="" id="imagen-4"></td>
-                                <td class="numeros">
+                                <td id="turno-4" class="numeros">
                                     <div > </div>
                                     <div > </div>
                                     <div> </div>
@@ -154,7 +154,7 @@
                             </tr>
                             <tr id="fila-5">
                                 <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-5"></td>
-                                <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                <td id="turno-5" class="numeros"  style="background-color: rgb(198, 232, 251);">
                                     <div > </div>
                                     <div> </div>
                                     <div> </div>
@@ -181,44 +181,33 @@
 
 
           socket2.on('recibir-turnos-pasillo', (payload) => {
-            const lastIndex = payload.length - 1;
-            console.log(payload.slice(Math.max(lastIndex - 4, 0)));
+            // Iterar sobre el arreglo de turnos recibidos
+            payload.forEach((turnosStand, index) => {
+                // Iterar sobre los turnos para este stand
+                turnosStand.forEach((turno, turnoIndex) => {
+                    // Obtener el ID del stand asociado con este turno
+                    const standId = turno.standId;
         
-            payload.slice(Math.max(lastIndex - 4, 0)).forEach((data, index) => {
-                const fila = document.getElementById(`fila-${index + 1}`);
-                if (fila) {
-                    const celdaNumeros = fila.querySelector('td.numeros');
-                    if (celdaNumeros) {
-                        const divsNumeros = celdaNumeros.querySelectorAll('div');
-                        data.forEach((item, i) => {
-                            if (divsNumeros[i]) {
-                                if (item.folioTurno) {
-                                    divsNumeros[i].textContent = item.folioTurno;
-                                    if (item.status === 'llamando') {
-                                        divsNumeros[i].classList.add('parpadeo');
-                                    } else {
-                                        divsNumeros[i].classList.remove('parpadeo');
-                                    }
-                                } else {
-                                    divsNumeros[i].textContent = '';
-                                    divsNumeros[i].classList.remove('parpadeo');
-                                }
-                            }
-                        });
+                    // Buscar la imagen que corresponde al standId
+                    const celdaImagen = document.querySelector(`td:first-child img[data-id="${standId}"]`);
         
-                        for (let i = data.length; i < divsNumeros.length; i++) {
-                            divsNumeros[i].textContent = '\u00A0';
-                            divsNumeros[i].classList.remove('parpadeo');
-                        }
+                    // Si encontramos la imagen correspondiente
+                    if (celdaImagen) {
+                        // Obtener el tr (fila) que contiene la imagen
+                        const fila = celdaImagen.closest('tr');
+        
+                        // Obtener el td adyacente para los turnos en la misma fila
+                        const tdTurnos = fila.querySelector('td:last-child');
+        
+                        // Crear un elemento div para el turno
+                        const divTurno = document.createElement('div');
+                        divTurno.textContent = turno.folioTurno;
+                        tdTurnos.appendChild(divTurno);
                     }
-                }
+                });
             });
-        
-            // Remover el parpadeo cuando no hay turnos o el arreglo de turnos está vacío
-            if (payload.every(data => data.length === 0)) {
-                limpiarParpadeo();
-            }
         });
+        
 
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://10.105.17.44:8000/stands/getallstands')
@@ -229,9 +218,15 @@
                         if (fila) {
                             const celdaImagen = fila.querySelector('td:first-child img');
                             if (celdaImagen) {
+                                // Guardar el ID del objeto en un atributo data-id del elemento img
+                                celdaImagen.dataset.id = stand.id;
+                                // Construir la URL completa de la imagen
                                 const imageURL = `http://10.105.17.44:8000/imagenes/${stand.image}`;
                                 celdaImagen.src = imageURL;
                                 celdaImagen.alt = '';
+                                // Imprimir el nombre de la imagen y el ID en la consola
+                                console.log('Nombre de la imagen:', stand.image);
+                                console.log('ID del objeto:', stand.id);
                             }
                         }
                     });
@@ -240,15 +235,10 @@
                     console.error('Error al obtener los stands:', error);
                 });
         });
+        
 
 
-        // Función para limpiar el parpadeo de los números cuando no hay ticket
-function limpiarParpadeo() {
-    const numerosEnPantalla = Array.from(document.querySelectorAll('[class=numeros] div')).filter(div => div.textContent.trim() !== '');
-    numerosEnPantalla.forEach(div => {
-        div.classList.remove('parpadeo');
-    });
-}
+ 
     </script>
 </body>
 
