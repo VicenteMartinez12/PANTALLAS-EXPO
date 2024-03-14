@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,9 +10,7 @@
             width: 100%;
             margin-top: 2%;
         }
-
        
-
      
         .tabla td {
            
@@ -33,19 +30,16 @@
             font-size: 80px;
             font-weight: bold;
         }
-
         .tabla tr {
             height: 100px;
         
         }
-
         .tabla img {
             max-width: 300px;
       
             max-height: 100px;
   
         }
-
         .tabla td:last-child {
             text-align: left;
           
@@ -53,37 +47,30 @@
             margin-right: 10%;
           
         }
-
         .numeros {
       display: flex;
             justify-content: space-between;
-
             padding: 0 10px;
             font-size: 50px;
   
             width: 98.8%;
             
-
             
             
           
             
         }
-
         @keyframes blink {
             0% {
                 background-color: yellow;
             }
-
             50% {
                 background-color: transparent;
             }
-
             100% {
                 background-color: yellow;
             }
         }
-
         .parpadeo {
             animation: blink 1s infinite;
         }
@@ -95,7 +82,6 @@
         
     </style>
 </head>
-
 <body>
     <div style="display: flex; align-items: center;">
         <div style="max-width: 100%; width: 100%; height: 100%;">
@@ -111,55 +97,55 @@
                         <tbody id="tablaBody">
                             <tr id="fila-1">
                                 <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-1"></td>
-                                <td id="turno-1" class= "numeros"  style="background-color: rgb(198, 232, 251);">
-                                    <div >  </div>
-                                    <div > </div>
-                                    <div > </div>
-                                    <div> </div>
-                                    <div> </div>
+                                <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
+                                    <div id="turno-${item.standId}-${i + 1}">  </div>
+                                    <div id="turno-${item.standId}-${i + 2}"> </div>
+                                    <div id="turno-${item.standId}-${i + 3}"> </div>
+                                    <div id="turno-${item.standId}-${i + 4}"> </div>
+                                    <div id="turno-${item.standId}-${i + 5}"> </div>
                                     
                                 </td>
                             </tr>
                             <tr id="fila-2">
                                 <td><img src="" alt="" id="imagen-2"></td>
-                                <td id="turno-2" style="align-content: center;" class="numeros">
-                                    <div > </div>
-                                    <div > </div>
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
+                                <td style="align-content: center;" class="numeros">
+                                    <div id="turno-${item.standId}-${i + 1}">  </div>
+                                    <div id="turno-${item.standId}-${i + 2}"> </div>
+                                    <div id="turno-${item.standId}-${i + 3}"> </div>
+                                    <div id="turno-${item.standId}-${i + 4}"> </div>
+                                    <div id="turno-${item.standId}-${i + 5}"> </div>
                                    
                                     
                                 </td>
                             </tr>
                             <tr id="fila-3">
                                 <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-3"></td>
-                                <td id="turno-3" class="numeros"  style="background-color: rgb(198, 232, 251);">
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
+                                <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                    <div id="turno-${item.standId}-${i + 1}">  </div>
+                                    <div id="turno-${item.standId}-${i + 2}"> </div>
+                                    <div id="turno-${item.standId}-${i + 3}"> </div>
+                                    <div id="turno-${item.standId}-${i + 4}"> </div>
+                                    <div id="turno-${item.standId}-${i + 5}"> </div>
                                 </td>
                             </tr>
                             <tr id="fila-4">
                                 <td><img src="" alt="" id="imagen-4"></td>
-                                <td id="turno-4" class="numeros">
-                                    <div > </div>
-                                    <div > </div>
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
+                                <td class="numeros">
+                                    <div id="turno-${item.standId}-${i + 1}">  </div>
+                                    <div id="turno-${item.standId}-${i + 2}"> </div>
+                                    <div id="turno-${item.standId}-${i + 3}"> </div>
+                                    <div id="turno-${item.standId}-${i + 4}"> </div>
+                                    <div id="turno-${item.standId}-${i + 5}"> </div>
                                 </td>
                             </tr>
                             <tr id="fila-5">
                                 <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-5"></td>
-                                <td id="turno-5" class="numeros"  style="background-color: rgb(198, 232, 251);">
-                                    <div > </div>
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
-                                    <div> </div>
+                                <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                    <div id="turno-${item.standId}-${i + 1}">  </div>
+                                    <div id="turno-${item.standId}-${i + 2}"> </div>
+                                    <div id="turno-${item.standId}-${i + 3}"> </div>
+                                    <div id="turno-${item.standId}-${i + 4}"> </div>
+                                    <div id="turno-${item.standId}-${i + 5}"> </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -172,43 +158,68 @@
     <script>
       
         const socket2 = io('http://10.105.17.44:8000');
-
-
         socket2.on('connect', () => {
             console.log('Conectado al servidor emisor');
           });
-          
+
+
+
+        
+      
+    
+  
+  
+            
+      
+   
 
 
           socket2.on('recibir-turnos-pasillo', (payload) => {
-            // Iterar sobre el arreglo de turnos recibidos
-            payload.forEach((turnosStand, index) => {
-                // Iterar sobre los turnos para este stand
-                turnosStand.forEach((turno, turnoIndex) => {
-                    // Obtener el ID del stand asociado con este turno
-                    const standId = turno.standId;
+            console.log(payload)
+            payload.forEach((data, index) => {
+                data.forEach((item, i) => {
+                  
+                    const standId = item.standId;
         
                     // Buscar la imagen que corresponde al standId
                     const celdaImagen = document.querySelector(`td:first-child img[data-id="${standId}"]`);
         
-                    // Si encontramos la imagen correspondiente
                     if (celdaImagen) {
                         // Obtener el tr (fila) que contiene la imagen
                         const fila = celdaImagen.closest('tr');
         
                         // Obtener el td adyacente para los turnos en la misma fila
-                        const tdTurnos = fila.querySelector('td:last-child');
+                        const celdaNumeros = fila.querySelector('td:last-child');
         
-                        // Crear un elemento div para el turno
-                        const divTurno = document.createElement('div');
-                        divTurno.textContent = turno.folioTurno;
-                        tdTurnos.appendChild(divTurno);
+                        if (celdaNumeros) {
+                            // Obtener todos los divs de números en la celda de números
+                            const divsNumeros = celdaNumeros.querySelectorAll('div');
+        
+                            // Asegurarse de que el índice i no sea mayor que el número de divs de números
+                            if (i < divsNumeros.length) {
+                                if (item.folioTurno) {
+                                    divsNumeros[i].textContent = item.folioTurno;
+                                    if (item.status === 'llamando') {
+                                        divsNumeros[i].classList.add('parpadeo');
+                                    } else {
+                                        divsNumeros[i].classList.remove('parpadeo');
+                                    }
+                                } else {
+                                    divsNumeros[i].textContent = '';
+                                    divsNumeros[i].classList.remove('parpadeo');
+                                }
+                            }
+                        }
                     }
                 });
             });
+        
+            // Remover el parpadeo cuando no hay turnos o el arreglo de turnos está vacío
+            if (payload.every(data => data.length === 0)) {
+                limpiarParpadeo();
+            }
         });
         
-
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://10.105.17.44:8000/stands/getallstands')
                 .then(response => response.json())
@@ -237,8 +248,13 @@
         });
         
 
-
- 
+        // Función para limpiar el parpadeo de los números cuando no hay ticket
+        function limpiarParpadeo() {
+            const numerosEnPantalla = Array.from(document.querySelectorAll('.numeros div')).filter(div => div.textContent.trim() !== '');
+            numerosEnPantalla.forEach(div => {
+                div.classList.remove('parpadeo');
+            });
+        }
     </script>
 </body>
 
