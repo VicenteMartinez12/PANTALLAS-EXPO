@@ -1,76 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Stands</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Pasillo Turnero</title>
+    <style>
+        .tabla {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 2%;
+        }
+       
+     
+        .tabla td {
+           
+      
+            border: 1px solid black;
+            font-size: 80px;
+            font-weight: bold;
+            align-items: center;
+            text-align: center;
+           
+           
+            
+        }
+        .tabla th{
+            padding: 8px;
+            border: 1px solid black;
+            font-size: 80px;
+            font-weight: bold;
+        }
+        .tabla tr {
+            height: 100px;
+        
+        }
+        .tabla img {
+            max-width: 300px;
+      
+            max-height: 100px;
+  
+        }
+        .tabla td:last-child {
+            text-align: left;
+          
+            font-size: 130px;
+            margin-right: 10%;
+          
+        }
+        .numeros {
+      display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            font-size: 50px;
+  
+            width: 98.8%;
+            
+            
+            
+          
+            
+        }
+        @keyframes blink {
+            0% {
+                background-color: yellow;
+            }
+            50% {
+                background-color: transparent;
+            }
+            100% {
+                background-color: yellow;
+            }
+        }
+        .parpadeo {
+            animation: blink 1s infinite;
+        }
+     
+        .image-container {
+            text-align: right;
+        }
+        .imagen-td {
+            width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0;
+            padding: 0;
+            object-fit: cover;
+         
+        }
+        
+    
+   
+        
+    </style>
 </head>
+<body>
 
-<body class="container">
-    <h1 class="mt-5">Selecciona el stand</h1>
-    <select id="selector" onchange="redirectToSelectedPage()">
-        <option >Selecciona el stand correspondiente</option>
-    </select>
-    <div class="row">
-        <div class="col-6">
+    <div id="pasillo1" style="display:block;">
+        <div style="display: flex; align-items: center;">
+            <div style="max-width: 100%; width: 100%; height: 100%;">
+                <div style="height: 100%; display: flex; flex-direction: column;">
+                    <div style=" justify-content: center; align-items: center; height: 100%; margin-top: 0%;">
+                        <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
+                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaBody">
+                                <tr id="fila-1">
+                                    <td  style="background-color: rgb(198, 232, 251);"></td>
+                                    <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                        
+                                    </td>
+                                </tr>
+                                <tr id="fila-2">
+                                    <td></td>
+                                    <td style="align-content: center;" class="numeros">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                       
+                                        
+                                    </td>
+                                </tr>
+                                <tr id="fila-3">
+                                    <td  style="background-color: rgb(198, 232, 251);"></td>
+                                    <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                    </td>
+                                </tr>
+                                <tr id="fila-4">
+                                    <td></td>
+                                    <td class="numeros">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                    </td>
+                                </tr>
+                                <tr id="fila-5">
+                                    <td  style="background-color: rgb(198, 232, 251);"></td>
+                                    <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+    <div id="pasillo2" class="oculto">
+        <div style="display: flex; align-items: center;">
+            <div style="max-width: 100%; width: 100%; height: 100%;">
+                <div style="height: 100%; display: flex; flex-direction: column;">
+                    <div style=" justify-content: center; align-items: center; height: 100%; margin-top: 0%;">
+                        <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
+                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tablaBody">
+                                <tr id="fila-6">
+                                    <td  style="background-color: rgb(198, 232, 251);"></td>
+                                    <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                        
+                                    </td>
+                                </tr>
+                                <tr id="fila-7">
+                                    <td></td>
+                                    <td style="align-content: center;" class="numeros">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                       
+                                        
+                                    </td>
+                                </tr>
+                                <tr id="fila-8">
+                                    <td  style="background-color: rgb(198, 232, 251);"></td>
+                                    <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                    </td>
+                                </tr>
+                                <tr id="fila-9">
+                                    <td></td>
+                                    <td class="numeros">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                    </td>
+                                </tr>
+                                <tr id="fila-10">
+                                    <td  style="background-color: rgb(198, 232, 251);"></td>
+                                    <td class="numeros"  style="background-color: rgb(198, 232, 251);">
+                                        <div id="turno-${item.standId}-${i + 1}">  </div>
+                                        <div id="turno-${item.standId}-${i + 2}"> </div>
+                                        <div id="turno-${item.standId}-${i + 3}"> </div>
+                                        <div id="turno-${item.standId}-${i + 4}"> </div>
+                                        <div id="turno-${item.standId}-${i + 5}"> </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
 
 
+    
+    <script src="./socket.io/socket.io.js"></script>
     <script>
-        var selectedStandId; 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Realizar solicitud HTTP para obtener los stands
-            fetch('http://10.105.17.44:8000/stands/getallstands')
-                .then(response => response.json()) // Convertir la respuesta a formato JSON
-                .then(data => {
-                    console.log(data); // Verificar el formato de los datos recibidos
-    
-                    // Obtener el elemento select
-                    const selector = document.getElementById('selector');
-    
-                    // Comprobar si data.stands es un array
-                    if (Array.isArray(data.stands)) {
-                        // Iterar sobre los stands obtenidos y agregar opciones al select
-                        data.stands.forEach(stand => {
-                            // Crear una opción para cada stand
-                            const option = document.createElement('option');
-                            option.value = stand.id; // Establecer el valor de la opción como el ID del stand
-                            option.textContent = stand.standName; // Establecer el texto de la opción como el nombre del stand
-                            option.setAttribute('data-url', 'publico.html'); // Establecer el atributo de datos para la URL de la página
-                            selector.appendChild(option); // Agregar la opción al select
-                        });
-                    } else {
-                        console.error('La propiedad "stands" no es un array:', data.stands);
+      
+        const socket2 = io('http://10.105.17.44:8000');
+        socket2.on('connect', () => {
+            console.log('Conectado al servidor emisor');
+          });
+
+        
+          socket2.on('recibir-turnos-pasillo', (payload) => {
+            // Iterar sobre el arreglo de turnos recibidos
+            payload.forEach((turnosStand, index) => {
+                // Obtener el ID del stand asociado con estos turnos
+                const standId = turnosStand[0].standId;
+        
+                // Buscar la imagen que corresponde al standId
+                const celdaImagen = document.querySelector(`td:first-child img[data-id="${standId}"]`);
+        
+                // Si encontramos la imagen correspondiente
+                if (celdaImagen) {
+                    // Obtener el tr (fila) que contiene la imagen
+                    const fila = celdaImagen.closest('tr');
+        
+                    // Obtener el td adyacente para los turnos en la misma fila
+                    const tdTurnos = fila.querySelector('td:last-child');
+        
+                    // Limpiar los divs anteriores dentro del td de turnos
+                    tdTurnos.innerHTML = '';
+        
+                    // Iterar sobre los primeros 5 turnos para este stand
+                    for (let i = 0; i < Math.min(turnosStand.length, 5); i++) {
+                        const turno = turnosStand[i];
+                        // Crear un elemento div para el turno
+                        const divTurno = document.createElement('div');
+                        divTurno.textContent = turno.folioTurno;
+                        // Si el status del turno es 'llamando', agregar la clase 'parpadeo'
+                        if (turno.status === 'llamando') {
+                            divTurno.classList.add('parpadeo');
+                        }
+                        tdTurnos.appendChild(divTurno);
                     }
+                }
+            });
+        });
+        
+        
+        
+        
+        
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('http://10.105.17.44:8000/stands/getallstands')
+                .then(response => response.json())
+                .then(data => {
+                    data.stands.forEach((stand, index) => {
+                        const fila = document.getElementById(`fila-${index + 1}`);
+                        if (fila) {
+                            const celda = fila.querySelector('td:first-child');
+                            if (celda) {
+                                // Construir la URL completa de la imagen
+                                const imageURL = `http://10.105.17.44:8000/imagenes/${stand.image}`;
+                                // Establecer la imagen como fondo del td
+                                celda.style.backgroundImage = `url('${imageURL}')`;
+                                celda.style.backgroundSize = 'cover';
+                                celda.style.backgroundPosition = 'center';
+                                celda.style.backgroundRepeat = 'no-repeat';
+                                // Imprimir el nombre de la imagen y el ID en la consola
+                                console.log('Nombre de la imagen:', stand.image);
+                                console.log('ID del objeto:', stand.id);
+                            }
+                        }
+                    });
                 })
                 .catch(error => {
                     console.error('Error al obtener los stands:', error);
                 });
         });
-        function redirectToSelectedPage() {
-            const selector = document.getElementById('selector');
-            const selectedOption = selector.options[selector.selectedIndex];
-            const selectedOptionId = selectedOption.value; // Obtener el ID seleccionado
-    
-            // Enviar el ID seleccionado a publico.js mediante una variable global
-            selectedStandId = selectedOptionId;
-            console.log(selectedStandId);
-    
-            // Redirigir a la página correspondiente
-            const selectedOptionUrl = selectedOption.getAttribute('data-url');
-            window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}`;
 
+        // Función para limpiar el parpadeo de los números cuando no hay ticket
+        function limpiarParpadeo() {
+            const numerosEnPantalla = Array.from(document.querySelectorAll('.numeros div')).filter(div => div.textContent.trim() !== '');
+            numerosEnPantalla.forEach(div => {
+                div.classList.remove('parpadeo');
+            });
         }
 
-        localStorage.setItem('selectedStandId', selectedStandId);
+        function alternarPasillos() {
+            var pasillo1 = document.getElementById('pasillo1');
+            var pasillo2 = document.getElementById('pasillo2');
+            
+            // Si el pasillo1 está visible, ocúltalo y muestra el pasillo2
+            if (pasillo1.style.display === 'block') {
+                pasillo1.style.display = 'none';
+                pasillo2.style.display = 'block';
+            } else { // Si el pasillo2 está visible, ocúltalo y muestra el pasillo1
+                pasillo1.style.display = 'block';
+                pasillo2.style.display = 'none';
+            }
+        }
+
+        // Alternar entre pasillos cada 10 segundos
+        setInterval(alternarPasillos, 10000); 
     </script>
 </body>
 
