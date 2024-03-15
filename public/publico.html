@@ -331,7 +331,7 @@ socket2.on('connect', () => {
   console.log(id);
 
 
-console.log()
+
 
 //
 socket2.on(`recibir-turnos-${id}`, (payload) => {
@@ -340,7 +340,6 @@ socket2.on(`recibir-turnos-${id}`, (payload) => {
   const id = selectedStandId; 
     console.log(id);
 
-    console.log(payload)
 
    
 
@@ -419,7 +418,6 @@ function limpiarPosiciones() {
             elementoEscritorio.innerText = posicion;
             elementoTicket.innerText = '';
             elementoTicket.parentElement.classList.remove('parpadeo');
-            elementoEscritorio.parentElement.classList.remove('parpadeo');
         }
     });
 }
