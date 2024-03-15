@@ -14,7 +14,7 @@
      
         .tabla td {
            
-            padding: 8px;
+      
             border: 1px solid black;
             font-size: 80px;
             font-weight: bold;
@@ -78,6 +78,17 @@
         .image-container {
             text-align: right;
         }
+        .imagen-td {
+            width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0;
+            padding: 0;
+            object-fit: cover;
+         
+        }
+        
+    
    
         
     </style>
@@ -96,7 +107,7 @@
                         </thead>
                         <tbody id="tablaBody">
                             <tr id="fila-1">
-                                <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-1"></td>
+                                <td  style="background-color: rgb(198, 232, 251);"></td>
                                 <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
                                     <div id="turno-${item.standId}-${i + 1}">  </div>
                                     <div id="turno-${item.standId}-${i + 2}"> </div>
@@ -107,7 +118,7 @@
                                 </td>
                             </tr>
                             <tr id="fila-2">
-                                <td><img src="" alt="" id="imagen-2"></td>
+                                <td></td>
                                 <td style="align-content: center;" class="numeros">
                                     <div id="turno-${item.standId}-${i + 1}">  </div>
                                     <div id="turno-${item.standId}-${i + 2}"> </div>
@@ -119,7 +130,7 @@
                                 </td>
                             </tr>
                             <tr id="fila-3">
-                                <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-3"></td>
+                                <td  style="background-color: rgb(198, 232, 251);"></td>
                                 <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                     <div id="turno-${item.standId}-${i + 1}">  </div>
                                     <div id="turno-${item.standId}-${i + 2}"> </div>
@@ -129,7 +140,7 @@
                                 </td>
                             </tr>
                             <tr id="fila-4">
-                                <td><img src="" alt="" id="imagen-4"></td>
+                                <td></td>
                                 <td class="numeros">
                                     <div id="turno-${item.standId}-${i + 1}">  </div>
                                     <div id="turno-${item.standId}-${i + 2}"> </div>
@@ -139,7 +150,7 @@
                                 </td>
                             </tr>
                             <tr id="fila-5">
-                                <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-5"></td>
+                                <td  style="background-color: rgb(198, 232, 251);"></td>
                                 <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                     <div id="turno-${item.standId}-${i + 1}">  </div>
                                     <div id="turno-${item.standId}-${i + 2}"> </div>
@@ -217,7 +228,6 @@
         
         
         
-        
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://10.105.17.44:8000/stands/getallstands')
                 .then(response => response.json())
@@ -225,14 +235,15 @@
                     data.stands.forEach((stand, index) => {
                         const fila = document.getElementById(`fila-${index + 1}`);
                         if (fila) {
-                            const celdaImagen = fila.querySelector('td:first-child img');
-                            if (celdaImagen) {
-                                // Guardar el ID del objeto en un atributo data-id del elemento img
-                                celdaImagen.dataset.id = stand.id;
+                            const celda = fila.querySelector('td:first-child');
+                            if (celda) {
                                 // Construir la URL completa de la imagen
                                 const imageURL = `http://10.105.17.44:8000/imagenes/${stand.image}`;
-                                celdaImagen.src = imageURL;
-                                celdaImagen.alt = '';
+                                // Establecer la imagen como fondo del td
+                                celda.style.backgroundImage = `url('${imageURL}')`;
+                                celda.style.backgroundSize = 'cover';
+                                celda.style.backgroundPosition = 'center';
+                                celda.style.backgroundRepeat = 'no-repeat';
                                 // Imprimir el nombre de la imagen y el ID en la consola
                                 console.log('Nombre de la imagen:', stand.image);
                                 console.log('ID del objeto:', stand.id);
@@ -244,7 +255,6 @@
                     console.error('Error al obtener los stands:', error);
                 });
         });
-        
 
         // Función para limpiar el parpadeo de los números cuando no hay ticket
         function limpiarParpadeo() {
