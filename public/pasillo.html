@@ -239,16 +239,34 @@
     <script src="./socket.io/socket.io.js"></script>
     <script>
       
-        const socket2 = io('http://10.105.17.44:8000');
+        const socket2 = io('http://10.105.160.48:8045');
         socket2.on('connect', () => {
             console.log('Conectado al servidor emisor');
           });
 
           socket2.on('recibir-turnos-pasillo', (payload) => {
+            // Limpiar todos los divs de turnos antes de procesar el nuevo payload
+            const todasCeldas = document.querySelectorAll('td:last-child');
+            todasCeldas.forEach(celda => celda.innerHTML = '');
+        
+            // Iterar sobre todas las celdas para agregar los espacios en blanco
+            todasCeldas.forEach(celda => {
+                for (let i = 0; i < 5; i++) {
+                    const divTurno = document.createElement('div');
+                    divTurno.textContent = '\u00A0'; // Carácter de espacio sin romper
+                    celda.appendChild(divTurno);
+                }
+            });
+        
+            // Verificar si el payload está vacío
+            if (payload.length === 0) {
+                return; // Salir de la función si el payload está vacío
+            }
+        
             // Iterar sobre el arreglo de turnos recibidos
             payload.forEach((turnosStand, index) => {
                 // Obtener el ID del stand asociado con estos turnos
-                const standId = turnosStand[0].standId;
+                const standId = turnosStand[0]?.standId;
         
                 // Buscar la imagen que corresponde al standId
                 const celdaImagen = document.querySelector(`td:first-child img[data-id="${standId}"]`);
@@ -268,13 +286,13 @@
                     for (let i = 0; i < 5; i++) {
                         // Obtener el turno correspondiente o un espacio en blanco si no hay más turnos
                         const turno = turnosStand[i];
-                        const turnoFolio = turno ? turno.folioTurno : ' ';
+                        const turnoFolio = turno ? turno.folioTurno : '\u00A0'; // Carácter de espacio sin romper
                         
                         // Crear un elemento div para el turno
                         const divTurno = document.createElement('div');
                         // Agregar el turno al div o un espacio en blanco si no hay turno
                         divTurno.textContent = turnoFolio;
-                        // Si el status del turno es 'llamando', agregar la clase 'parpadeo'
+                        // Si el turno está definido y su status es 'llamando', agregar la clase 'parpadeo'
                         if (turno && turno.status === 'llamando') {
                             divTurno.classList.add('parpadeo');
                         }
@@ -292,9 +310,8 @@
         
         
         
-        
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://10.105.17.44:8000/stands/getallstands')
+            fetch('http://10.105.160.48:8045/stands/getallstands')
                 .then(response => response.json())
                 .then(data => {
                     data.stands.forEach((stand, index) => {
@@ -305,7 +322,7 @@
                                 // Guardar el ID del objeto en un atributo data-id del elemento img
                                 celdaImagen.dataset.id = stand.id;
                                 // Construir la URL completa de la imagen
-                                const imageURL = `http://10.105.17.44:8000/imagenes/${stand.image}`;
+                                const imageURL = `http://10.105.160.48:8045/imagenes/${stand.image}`;
                                 celdaImagen.src = imageURL;
                                 celdaImagen.alt = '';
                                 // Imprimir el nombre de la imagen y el ID en la consola
