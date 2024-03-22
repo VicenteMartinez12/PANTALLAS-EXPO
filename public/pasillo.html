@@ -239,7 +239,7 @@
     <script src="./socket.io/socket.io.js"></script>
     <script>
       
-        const socket2 = io('http://192.168.2.250:8045');
+        const socket2 = io('http://10.105.160.37');
         socket2.on('connect', () => {
             console.log('Conectado al servidor emisor');
           });
@@ -311,7 +311,7 @@
         
         
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://192.168.2.250:8045/stands/getallstands')
+            fetch('http://10.105.160.37/stands/getallstands')
                 .then(response => response.json())
                 .then(data => {
                     data.stands.forEach((stand, index) => {
@@ -322,7 +322,7 @@
                                 // Guardar el ID del objeto en un atributo data-id del elemento img
                                 celdaImagen.dataset.id = stand.id;
                                 // Construir la URL completa de la imagen
-                                const imageURL = `http://192.168.2.250:8045/imagenes/${stand.image}`;
+                                const imageURL = `http://10.105.160.37/imagenes/${stand.image}`;
                                 celdaImagen.src = imageURL;
                                 celdaImagen.alt = '';
                                 // Imprimir el nombre de la imagen y el ID en la consola
