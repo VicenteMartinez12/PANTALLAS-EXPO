@@ -322,7 +322,7 @@ console.log(selectedStandId);
 // Objeto para almacenar los tickets actuales de cada escritorio
 const escritorios = {};
 
-const socket2 = io('http://10.105.17.44:8000');
+const socket2 = io('http://192.168.2.250:8045');
 
 socket2.on('connect', () => {
   console.log('Conectado al servidor emisor');
@@ -339,7 +339,8 @@ socket2.on(`recibir-turnos-${id}`, (payload) => {
 
   const id = selectedStandId; 
     console.log(id);
-
+    console.log(payload);
+    
 
    
 
@@ -416,6 +417,7 @@ function limpiarPosiciones() {
         const elementoTicket = document.getElementById(`lblTicket${posicion}`);
         if (elementoEscritorio && elementoTicket) {
             elementoEscritorio.innerText = posicion;
+            elementoEscritorio.parentElement.classList.remove('parpadeo');
             elementoTicket.innerText = '';
             elementoTicket.parentElement.classList.remove('parpadeo');
         }
@@ -431,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const selectedImageName = urlParams.get('image'); // Obtener el nombre de la imagen
 
     // Construir la URL completa de la imagen utilizando el nombre de la imagen recibido
-    const imageURL = `http://10.105.17.44:8000/imagenes/${selectedImageName}`;
+    const imageURL = `http://192.168.2.250:8045/imagenes/${selectedImageName}`;
 
     // Establecer la URL de la imagen en la etiqueta <img>
     const imgElement = document.querySelector('.proximos img');
