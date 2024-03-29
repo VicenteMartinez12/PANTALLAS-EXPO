@@ -63,6 +63,12 @@
         <select id="selector" onchange="redirectToSelectedPage()" >
             <option style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ">Selecciona el stand correspondiente</option>
         </select>
+        <select id="pasillo" onchange="redirectToSelectedPasillo()">
+            <option>Pasillo</option>
+            <option>De 1 a 5 Stands</option>
+            <option>De 6 a 10 Stands</option>
+            <option>De 11 a 15 Stands</option>
+        </select>
         <button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; " onclick="redireccionar()">   PASILLO</button>
 
     </div>
@@ -74,6 +80,10 @@
         function redireccionar() {
             // Redireccionar a la página deseada
             window.location.href = "pasillo.html";
+        }
+        function redireccionarPasillo1() {
+            // Redireccionar a la página deseada
+            window.location.href = "pasillo1-5.html";
         }
         var selectedStandId; 
         document.addEventListener('DOMContentLoaded', function() {
@@ -122,6 +132,13 @@
             const selectedOptionUrl = selectedOption.getAttribute('data-url');
             window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}&image=${selectedOptionImage}`;
 
+        }
+        function redirectToSelectedPasillo() {
+            const pasilloSelector = document.getElementById('pasillo');
+            const selectedOption = pasilloSelector.options[pasilloSelector.selectedIndex].value;
+            if (selectedOption === "De 1 a 5 Stands") {
+                window.location.href = "pasillo1-5.html";
+            }
         }
 
         localStorage.setItem('selectedStandId', selectedStandId);

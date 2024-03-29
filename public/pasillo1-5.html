@@ -170,79 +170,7 @@
 
 
 
-    <div id="pasillo2" class="oculto">
-        <div style="display: flex; align-items: center;">
-            <div style="max-width: 100%; width: 100%; height: 100%;">
-                <div style="height: 100%; display: flex; flex-direction: column;">
-                    <div style=" justify-content: center; align-items: center; height: 100%; margin-top: 0%;">
-                        <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
-                            <thead>
-                                <tr>
-                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
-                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
-                                </tr>
-                            </thead>
-                            <tbody id="tablaBody">
-                                <tr id="fila-6">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-6"></td>
-                                    <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
-                                        <div style="width: 20;" id="turno-${item.standId}-${i + 1}">  </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 3}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 4}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 5}"> </div>
-                                        
-                                    </td>
-                                </tr>
-                                <tr id="fila-7">
-                                    <td><img src="" alt="" id="imagen-7"></td>
-                                    <td style="align-content: center;" class="numeros">
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 3}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 4}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 5}"> </div>
-                                       
-                                        
-                                    </td>
-                                </tr>
-                                <tr id="fila-8">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-8"></td>
-                                    <td class="numeros"  style="background-color: rgb(198, 232, 251);">
-                                        <div  class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 3}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 4}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 5}"> </div>
-                                    </td>
-                                </tr>
-                                <tr id="fila-9">
-                                    <td><img src="" alt="" id="imagen-9"></td>
-                                    <td class="numeros">
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 3}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 4}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 5}"> </div>
-                                    </td>
-                                </tr>
-                                <tr id="fila-10">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-10"></td>
-                                    <td class="numeros"  style="background-color: rgb(198, 232, 251);">
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 3}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 4}"> </div>
-                                        <div class="divNumeros" id="turno-${item.standId}-${i + 5}"> </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     
     <script src="./socket.io/socket.io.js"></script>
     <script>
@@ -356,22 +284,7 @@
             });
         }
 
-        function alternarPasillos() {
-            var pasillo1 = document.getElementById('pasillo1');
-            var pasillo2 = document.getElementById('pasillo2');
-            
-            // Si el pasillo1 está visible, ocúltalo y muestra el pasillo2
-            if (pasillo1.style.display === 'block') {
-                pasillo1.style.display = 'none';
-                pasillo2.style.display = 'block';
-            } else { // Si el pasillo2 está visible, ocúltalo y muestra el pasillo1
-                pasillo1.style.display = 'block';
-                pasillo2.style.display = 'none';
-            }
-        }
-
-        // Alternar entre pasillos cada 10 segundos
-        setInterval(alternarPasillos, 10000); // 10000 milisegundos = 10 segundos
+      
     </script>
 </body>
 
