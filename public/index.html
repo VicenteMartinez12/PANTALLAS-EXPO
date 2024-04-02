@@ -58,18 +58,22 @@
 
 <body class="container">
     <div  class="card shadow">
+
         <img src="./img/expoTony.png" style="width: 300px; margin-left:  60px; margin-top: 30px;">
         <h1 class="mt-5" style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Selecciona el stand o pasillo</h1>
+        <form id="selectionForm">
         <select id="selector" onchange="redirectToSelectedPage()" >
             <option style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ">Selecciona el stand correspondiente</option>
         </select>
         <select id="pasillo" onchange="redirectToSelectedPasillo()">
-            <option>Pasillo</option>
+            <option>Selecciona la pantalla de pasillo</option>
             <option>De 1 a 5 Stands</option>
             <option>De 6 a 10 Stands</option>
             <option>De 11 a 15 Stands</option>
         </select>
-        <button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; " onclick="redireccionar()">   PASILLO</button>
+
+    </form>
+    <!-- <button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; " onclick="redireccionar()">   PASILLO</button> -->
 
     </div>
 
@@ -138,10 +142,39 @@
             const selectedOption = pasilloSelector.options[pasilloSelector.selectedIndex].value;
             if (selectedOption === "De 1 a 5 Stands") {
                 window.location.href = "pasillo1-5.html";
+            }else if(selectedOption === "De 6 a 10 Stands"){
+                window.location.href = "pasillo.html";
+            }else if(selectedOption === "De 11 a 15 Stands"){
+                window.location.href = "pasillo11-15.html";
             }
         }
 
         localStorage.setItem('selectedStandId', selectedStandId);
+
+
+         // Función para limpiar la selección cuando se carga la página
+         function limpiarSeleccion() {
+            // Obtener el formulario de selección
+            const selectionForm = document.getElementById('selectionForm');
+
+           
+            // Restablecer el formulario
+          
+            setTimeout(()=>{
+                selectionForm.reset();
+                
+
+            },0)
+            
+      
+        
+        }
+
+        // Llamar a la función para limpiar la selección cuando se cargue la página
+        window.addEventListener('load', limpiarSeleccion);
+        
+        
+    
 
         
     </script>
