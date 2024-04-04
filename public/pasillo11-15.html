@@ -85,7 +85,10 @@
          
      
         }
-       
+        
+        .imagen-cell {
+            background-size: contain !important;
+        }
    
         
     </style>
@@ -100,13 +103,14 @@
                         <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
                             <thead>
                                 <tr>
-                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
-                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
-                                </tr>
+                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite;  background-image: url('./img/expoTony.png'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 650px; height: 110px;"></th>
+
+                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;     background-image: url('./img/expoTony.png'); background-size: contain; background-position: right; background-repeat: no-repeat; width: 1878px; height: 110px;   text-align: left; padding-left: 180px;">Próximos turnos</th>
+                               </tr>
                             </thead>
                             <tbody id="tablaBody">
                                 <tr id="fila-1">
-                                    <td  style="background-color: rgb(198, 232, 251); background:'http://10.105.160.48:8045/imagenes/${stand.image}';" id="imagen-1"><img src="" alt="" id="imagen-1"></td>
+                                    <td class="imagen-cell"  style="background-color: rgb(198, 232, 251); background:'http://10.105.160.48:8045/imagenes/${stand.image}';" id="imagen-1"><img src="" alt="" id="imagen-1"></td>
                                     <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div style="color: red;" class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -117,7 +121,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-2">
-                                    <td><img src="" alt="" id="imagen-2"></td>
+                                    <td class="imagen-cell"><img src="" alt="" id="imagen-2"></td>
                                     <td  class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -129,7 +133,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-3">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-3"></td>
+                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-3"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -139,7 +143,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-4">
-                                    <td><img src="" alt="" id="imagen-4"></td>
+                                    <td class="imagen-cell"><img src="" alt="" id="imagen-4"></td>
                                     <td class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -149,7 +153,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-5">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-5"></td>
+                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-5"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -178,13 +182,14 @@
                         <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
                             <thead>
                                 <tr>
-                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
-                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
-                                </tr>
+                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite;  background-image: url('./img/expoTony.png'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 650px; height: 110px;"></th>
+
+                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;     background-image: url('./img/expoTony.png'); background-size: contain; background-position: right; background-repeat: no-repeat; width: 1878px; height: 110px;   text-align: left; padding-left: 180px;">Próximos turnos</th>
+                               </tr>
                             </thead>
                             <tbody id="tablaBody">
                                 <tr id="fila-6">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-6"></td>
+                                    <td class="imagen-cell"  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-6"></td>
                                     <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div style="width: 20;" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -195,7 +200,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-7">
-                                    <td><img src="" alt="" id="imagen-7"></td>
+                                    <td class="imagen-cell"><img src="" alt="" id="imagen-7"></td>
                                     <td style="align-content: center;" class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -207,7 +212,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-8">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-8"></td>
+                                    <td class="imagen-cell"  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-8"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div  class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -217,7 +222,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-9">
-                                    <td><img src="" alt="" id="imagen-9"></td>
+                                    <td class="imagen-cell"><img src="" alt="" id="imagen-9"></td>
                                     <td class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -227,7 +232,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-10">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-10"></td>
+                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-10"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -253,13 +258,14 @@
                         <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
                             <thead>
                                 <tr>
-                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt=""></th>
-                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right;" src="./img/expoTony.png" alt=""></th>
-                                </tr>
+                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite;  background-image: url('./img/expoTony.png'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 650px; height: 110px;"></th>
+
+                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;     background-image: url('./img/expoTony.png'); background-size: contain; background-position: right; background-repeat: no-repeat; width: 1878px; height: 110px;   text-align: left; padding-left: 180px;">Próximos turnos</th>
+                               </tr>
                             </thead>
                             <tbody id="tablaBody">
                                 <tr id="fila-11">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-11"></td>
+                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-11"></td>
                                     <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div style="width: 20;" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -270,7 +276,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-12">
-                                    <td><img src="" alt="" id="imagen-12"></td>
+                                    <td class="imagen-cell"><img src="" alt="" id="imagen-12"></td>
                                     <td style="align-content: center;" class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -282,7 +288,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-13">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-13"></td>
+                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-13"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div  class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -292,7 +298,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-14">
-                                    <td><img src="" alt="" id="imagen-14"></td>
+                                    <td class="imagen-cell"><img src="" alt="" id="imagen-14"></td>
                                     <td class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -302,7 +308,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-15">
-                                    <td  style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-15"></td>
+                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251);"><img src="" alt="" id="imagen-15"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -360,7 +366,7 @@
                 const standId = turnosStand[0]?.standId;
         
                 // Buscar la imagen que corresponde al standId
-                const celdaImagen = document.querySelector(`td:first-child img[data-id="${standId}"]`);
+                const celdaImagen = document.querySelector(`td:first-child[data-id="${standId}"]`);
         
                 // Si encontramos la imagen correspondiente
                 if (celdaImagen) {
@@ -409,14 +415,17 @@
                     data.stands.forEach((stand, index) => {
                         const fila = document.getElementById(`fila-${index + 1}`);
                         if (fila) {
-                            const celdaImagen = fila.querySelector('td:first-child img');
-                            if (celdaImagen) {
-                                // Guardar el ID del objeto en un atributo data-id del elemento img
-                                celdaImagen.dataset.id = stand.id;
+                            const celda = fila.querySelector('td:first-child');
+                            if (celda) {
+                                // Guardar el ID del objeto en un atributo data-id del elemento td
+                                celda.dataset.id = stand.id;
                                 // Construir la URL completa de la imagen
                                 const imageURL = `http://10.105.160.48:8045/imagenes/${stand.image}`;
-                                celdaImagen.src = imageURL;
-                                celdaImagen.alt = '';
+                                // Establecer la imagen como fondo del td
+                                celda.style.backgroundImage = `url('${imageURL}')`;
+                                celda.style.backgroundSize = 'cover'; // Ajusta el tamaño de la imagen para cubrir completamente el fondo
+                                celda.style.backgroundPosition = 'center'; // Centra la imagen
+                                celda.style.backgroundRepeat = 'no-repeat';
                                 // Imprimir el nombre de la imagen y el ID en la consola
                                 console.log('Nombre de la imagen:', stand.image);
                                 console.log('ID del objeto:', stand.id);

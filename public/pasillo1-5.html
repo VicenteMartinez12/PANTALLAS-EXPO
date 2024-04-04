@@ -111,7 +111,7 @@
                             </thead>
                             <tbody id="tablaBody">
                                 <tr id="fila-1">
-                                    <td class="imagen-cell" style="   background-color: rgb(198, 232, 251); background:'http://10.105.160.48:8045/imagenes/${stand.image}'; background-size: contain !important; background-position: center; background-repeat: no-repeat;" id="imagen-1"><img src="" alt="" id="imagen-1"></td>
+                                    <td class="imagen-cell"  style="background-color: rgb(198, 232, 251); "><img src="" alt="" id="imagen-1"></td>
 
 
                                     <td  class= "numeros"  style="background-color: rgb(198, 232, 251);">
@@ -124,7 +124,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-2">
-                                    <td class="imagen-cell" style=" background:'http://10.105.160.48:8045/imagenes/${stand.image}'; background-size: contain !important; background-position: center; background-repeat: no-repeat;" id="imagen-2"><img src="" alt="" id="imagen-2"></td>
+                                    <td class="imagen-cell" ><img src="" alt="" id="imagen-2"></td>
                                     <td  class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -136,7 +136,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-3">
-                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251); background:'http://10.105.160.48:8045/imagenes/${stand.image}'; background-size: contain !important; background-position: center; background-repeat: no-repeat;" id="imagen-3"><img src="" alt="" id="imagen-3"></td>
+                                    <td class="imagen-cell"  style="background-color: rgb(198, 232, 251); "><img src="" alt="" id="imagen-3"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -146,7 +146,7 @@
                                     </td>
                                 </tr>
                                 <tr id="fila-4">
-                                    <td class="imagen-cell" style=" background:'http://10.105.160.48:8045/imagenes/${stand.image}'; background-size: contain !important; background-position: center; background-repeat: no-repeat;" id="imagen-4"><img src="" alt="" id="imagen-4"></td>
+                                    <td class="imagen-cell" ><img src="" alt="" id="imagen-4"></td>
                                     <td class="numeros">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -156,7 +156,7 @@
                                     </td>
                                 </tr>
                                 <tr  id="fila-5">
-                                    <td class="imagen-cell" style="background-color: rgb(198, 232, 251); background:'http://10.105.160.48:8045/imagenes/${stand.image}'; background-size: contain !important; background-position: center; background-repeat: no-repeat;" id="imagen-5"><img  src="" alt="" id="imagen-5"></td>
+                                    <td class="imagen-cell"  style="background-color: rgb(198, 232, 251); "><img src="" alt="" id="imagen-5"></td>
                                     <td class="numeros"  style="background-color: rgb(198, 232, 251);">
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 1}">  </div>
                                         <div class="divNumeros" id="turno-${item.standId}-${i + 2}"> </div>
@@ -189,44 +189,49 @@
 
           socket2.on('recibir-turnos-pasillo', (payload) => {
             console.log(payload);
-        
             // Limpiar todos los divs de turnos antes de procesar el nuevo payload
-            const todasCeldas = document.querySelectorAll('td:not(:first-child)'); // Seleccionar todos los td excepto el primero (que contiene la imagen)
+            const todasCeldas = document.querySelectorAll('td:last-child');
+            todasCeldas.forEach(celda => celda.innerHTML = '');
+            console.log(payload);
+            // Iterar sobre todas las celdas para agregar los espacios en blanco
             todasCeldas.forEach(celda => {
-                celda.innerHTML = '';
                 for (let i = 0; i < 5; i++) {
                     const divTurno = document.createElement('div');
                     divTurno.textContent = '\u00A0'; // Carácter de espacio sin romper
                     celda.appendChild(divTurno);
                 }
             });
-          // Verificar si el payload está vacío
-          if (payload.length === 0) {
-            return; // Salir de la función si el payload está vacío
-        }
+        
+            // Verificar si el payload está vacío
+            if (payload.length === 0) {
+                return; // Salir de la función si el payload está vacío
+            }
+        
             // Iterar sobre el arreglo de turnos recibidos
             payload.forEach((turnosStand, index) => {
                 // Obtener el ID del stand asociado con estos turnos
                 const standId = turnosStand[0]?.standId;
         
-                // Buscar la celda que corresponde al standId
-                const celdaTurnos = document.querySelector(`td:first-child[data-id="${standId}"]`).nextElementSibling;
+                // Buscar la imagen que corresponde al standId
+                const celdaImagen = document.querySelector(`td:first-child[data-id="${standId}"]`);
         
-                // Si encontramos la celda correspondiente
-                if (celdaTurnos) {
-                    const fila = celdaTurnos.closest('tr');
+                // Si encontramos la imagen correspondiente
+                if (celdaImagen) {
+                    // Obtener el tr (fila) que contiene la imagen
+                    const fila = celdaImagen.closest('tr');
         
                     // Obtener el td adyacente para los turnos en la misma fila
                     const tdTurnos = fila.querySelector('td:last-child');
         
                     // Limpiar los divs anteriores dentro del td de turnos
                     tdTurnos.innerHTML = '';
+        
                     // Iterar sobre los primeros 5 divs para este stand
                     for (let i = 0; i < 5; i++) {
                         // Obtener el turno correspondiente o un espacio en blanco si no hay más turnos
                         const turno = turnosStand[i];
                         const turnoFolio = turno ? turno.folioTurno : '\u00A0'; // Carácter de espacio sin romper
-        
+                        
                         // Crear un elemento div para el turno
                         const divTurno = document.createElement('div');
                         // Agregar el turno al div o un espacio en blanco si no hay turno
@@ -236,20 +241,20 @@
                             divTurno.classList.add('parpadeo');
                         }
                         divTurno.classList.add('divNumeros');
-                   
-                        celdaTurnos.appendChild(divTurno);
+                        tdTurnos.appendChild(divTurno);
                     }
                 }
             }); 
         });
         
+      
         
         
         
         
         
         
-        
+         
         document.addEventListener('DOMContentLoaded', function() {
             fetch('http://10.105.160.48:8045/stands/getallstands')
                 .then(response => response.json())
@@ -259,13 +264,15 @@
                         if (fila) {
                             const celda = fila.querySelector('td:first-child');
                             if (celda) {
-                                // Establecer la imagen como fondo del td
-                                celda.style.backgroundImage = `url(http://10.105.160.48:8045/imagenes/${stand.image})`;
-                                celda.style.backgroundSize = 'cover';
-                                celda.style.backgroundPosition = 'center';
-                                celda.style.backgroundRepeat = 'no-repeat';
                                 // Guardar el ID del objeto en un atributo data-id del elemento td
                                 celda.dataset.id = stand.id;
+                                // Construir la URL completa de la imagen
+                                const imageURL = `http://10.105.160.48:8045/imagenes/${stand.image}`;
+                                // Establecer la imagen como fondo del td
+                                celda.style.backgroundImage = `url('${imageURL}')`;
+                                celda.style.backgroundSize = 'cover'; // Ajusta el tamaño de la imagen para cubrir completamente el fondo
+                                celda.style.backgroundPosition = 'center'; // Centra la imagen
+                                celda.style.backgroundRepeat = 'no-repeat';
                                 // Imprimir el nombre de la imagen y el ID en la consola
                                 console.log('Nombre de la imagen:', stand.image);
                                 console.log('ID del objeto:', stand.id);
@@ -277,7 +284,6 @@
                     console.error('Error al obtener los stands:', error);
                 });
         });
-        
         
 
         // Función para limpiar el parpadeo de los números cuando no hay ticket
