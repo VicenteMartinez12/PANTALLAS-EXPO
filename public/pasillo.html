@@ -80,7 +80,7 @@
         .divNumeros{
           
             flex: 1;
-            text-align:  right;
+            text-align:  center;
             font-size: 130px;
          
      
@@ -251,7 +251,7 @@
     <script src="./socket.io/socket.io.js"></script>
     <script>
       
-        const socket2 = io('http://10.105.160.48:8045');
+        const socket2 = io('http://192.168.100.3:8045');
         socket2.on('connect', () => {
             console.log('Conectado al servidor emisor');
           });
@@ -325,7 +325,7 @@
         
         
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://10.105.160.48:8045/stands/getallstands')
+            fetch('http://192.168.100.3:8045/stands/getallstands')
                 .then(response => response.json())
                 .then(data => {
                     data.stands.forEach((stand, index) => {
@@ -336,7 +336,7 @@
                                 // Guardar el ID del objeto en un atributo data-id del elemento td
                                 celda.dataset.id = stand.id;
                                 // Construir la URL completa de la imagen
-                                const imageURL = `http://10.105.160.48:8045/imagenes/${stand.image}`;
+                                const imageURL = `http://192.168.100.3:8045/imagenes/${stand.image}`;
                                 // Establecer la imagen como fondo del td
                                 celda.style.backgroundImage = `url('${imageURL}')`;
                                 celda.style.backgroundSize = 'cover'; // Ajusta el tamaño de la imagen para cubrir completamente el fondo
