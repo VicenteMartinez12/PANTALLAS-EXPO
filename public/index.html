@@ -91,8 +91,11 @@
         }
         var selectedStandId; 
         document.addEventListener('DOMContentLoaded', function() {
+            const hostname = window.location.hostname;
+            
+        
             // Realizar solicitud HTTP para obtener los stands
-            fetch('http://192.168.100.3:8045/stands/getallstands')
+            fetch(`http://${hostname}:8045/stands/getallstands`)
                 .then(response => response.json()) // Convertir la respuesta a formato JSON
                 .then(data => {
                     console.log(data); // Verificar el formato de los datos recibidos

@@ -104,10 +104,9 @@
                         <table style="width: 100%; height: 88%; font-size: 50px;" class="tabla">
                             <thead>
                                 <tr>
-                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite;  background-image: url('./img/expoTony.png'); background-size: contain; background-position: center; background-repeat: no-repeat; width: 650px; height: 110px;"></th>
+                                    <th style="font-size: 100px; background-color: #012475; color: antiquewhite; text-align: center; "><img src="./img/expoTony.png" alt="" style="margin-top: 20px;"></th>
 
-                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;     background-image: url('./img/expoTony.png'); background-size: contain; background-position: right; background-repeat: no-repeat; width: 1878px; height: 110px;   text-align: left; padding-left: 180px;">Próximos turnos</th>
-                                </tr>
+                                    <th style="font-size: 100px;  background-color: #012475; color: antiquewhite;    text-align: center; ">Próximos turnos   <img style="float: right; margin-top: 5px;" src="./img/expoTony.png" alt=""></th> </tr>
                             </thead>
                             <tbody id="tablaBody">
                                 <tr id="fila-1">
@@ -181,8 +180,10 @@
     
     <script src="./socket.io/socket.io.js"></script>
     <script>
+
+        const hostname = window.location.hostname;
       
-        const socket2 = io('http://192.168.100.3:8045');
+        const socket2 = io(`http://${hostname}:8045`);
         socket2.on('connect', () => {
             console.log('Conectado al servidor emisor');
           });
@@ -256,7 +257,8 @@
         
          
         document.addEventListener('DOMContentLoaded', function() {
-            fetch('http://192.168.100.3:8045/stands/getallstands')
+            const hostname = window.location.hostname;
+            fetch(`http://${hostname}:8045/stands/getallstands`)
                 .then(response => response.json())
                 .then(data => {
                     data.stands.forEach((stand, index) => {
@@ -267,7 +269,7 @@
                                 // Guardar el ID del objeto en un atributo data-id del elemento td
                                 celda.dataset.id = stand.id;
                                 // Construir la URL completa de la imagen
-                                const imageURL = `http://192.168.100.3:8045/imagenes/${stand.image}`;
+                                const imageURL = `http://${hostname}:8045/imagenes/${stand.image}`;
                                 // Establecer la imagen como fondo del td
                                 celda.style.backgroundImage = `url('${imageURL}')`;
                                 celda.style.backgroundSize = 'cover'; // Ajusta el tamaño de la imagen para cubrir completamente el fondo
