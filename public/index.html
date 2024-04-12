@@ -1,187 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Inicio Pantallas</title>
 
-  
-  <style>
-    .container {
+    <style>
+      .container {
         display: flex;
         justify-content: center;
         align-items: center;
-         /* Ajusta la altura del contenedor al 100% del viewport */
-    }
+        /* Ajusta la altura del contenedor al 100% del viewport */
+      }
 
-    .card {
+      .card {
         margin-top: 125px;
-        width: 400px; 
-        height: 450px; 
+        width: 400px;
+        height: 450px;
         background-color: white;
         border-radius: 10px;
-        transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-       }
+        transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
 
-       select {
+      select {
         width: 80%; /* Ancho del select */
         margin: 20px auto; /* Margen para centrar horizontalmente */
         padding: 10px; /* Añade un espacio interno */
         display: block; /* Hace que el select sea un bloque */
-       border-radius: 5px;
-    }
-       
-       .shadow {
-        box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1),
-                    0 0  0 2px rgb(190, 190, 190),
-                    0.3em 0.3em 1em rgba(0,0,0,0.3);
-       }
-       .card h1 {
+        border-radius: 5px;
+      }
+
+      .shadow {
+        box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+          0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+      }
+      .card h1 {
         margin-top: 5px; /* Ajusta según sea necesario */
         text-align: center;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    }
-    button{
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      }
+      button {
         width: 80%; /* Ancho del select */
         margin: 20px auto; /* Margen para centrar horizontalmente */
         padding: 10px; /* Añade un espacio interno */
         display: block; /* Hace que el select sea un bloque */
-       border-radius: 5px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
 
-    }
-       
-  </style>
-       
-</head>
-
-<body class="container">
-    <div  class="card shadow">
-
-        <img src="./img/expoTony.png" style="width: 300px; margin-left:  60px; margin-top: 30px;">
-        <h1 class="mt-5" style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Selecciona el stand o pasillo</h1>
-        <form id="selectionForm">
-        <select id="selector" onchange="redirectToSelectedPage()" >
-            <option style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; ">Selecciona el stand correspondiente</option>
+  <body class="container">
+    <div class="card shadow">
+      <img
+        src="./img/expoTony.png"
+        style="width: 300px; margin-left: 60px; margin-top: 30px"
+      />
+      <h1
+        class="mt-5"
+        style="
+          text-align: center;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+            sans-serif;
+        "
+      >
+        Selecciona el stand o pasillo
+      </h1>
+      <form id="selectionForm">
+        <select id="selector" onchange="redirectToSelectedPage()">
+          <option
+            style="
+              font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
+            "
+          >
+            Selecciona el stand correspondiente
+          </option>
         </select>
         <select id="pasillo" onchange="redirectToSelectedPasillo()">
-            <option>Selecciona la pantalla de pasillo</option>
-            <option>De 1 a 5 Stands</option>
-            <option>De 6 a 10 Stands</option>
-            <option>De 11 a 15 Stands</option>
+          <option>Selecciona la pantalla de pasillo</option>
+          <option>De 1 a 5 Stands</option>
+          <option>De 6 a 10 Stands</option>
+          <option>De 11 a 15 Stands</option>
         </select>
-
-    </form>
-    <!-- <button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; " onclick="redireccionar()">   PASILLO</button> -->
-
+      </form>
+      <!-- <button style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; " onclick="redireccionar()">   PASILLO</button> -->
     </div>
 
-    
-       
-
     <script>
-        function redireccionar() {
-            // Redireccionar a la página deseada
-            window.location.href = "pasillo.html";
-        }
-        function redireccionarPasillo1() {
-            // Redireccionar a la página deseada
-            window.location.href = "pasillo1-5.html";
-        }
-        var selectedStandId; 
-        document.addEventListener('DOMContentLoaded', function() {
-            const hostname = window.location.hostname;
-            
-        
-            // Realizar solicitud HTTP para obtener los stands
-            fetch(`http://${hostname}:8045/stands/getallstands`)
-                .then(response => response.json()) // Convertir la respuesta a formato JSON
-                .then(data => {
-                    console.log(data); // Verificar el formato de los datos recibidos
-    
-                    // Obtener el elemento select
-                    const selector = document.getElementById('selector');
-    
-                    // Comprobar si data.stands es un array
-                    if (Array.isArray(data.stands)) {
-                        // Iterar sobre los stands obtenidos y agregar opciones al select
-                        data.stands.forEach(stand => {
-                            // Crear una opción para cada stand
-                            const option = document.createElement('option');
-                            option.value = stand.id; // Establecer el valor de la opción como el ID del stand
-                            option.textContent = stand.standName; // Establecer el texto de la opción como el nombre del stand
-                            option.setAttribute('data-url', 'publico.html'); // Establecer el atributo de datos para la URL de la página
-                            option.setAttribute('data-image', stand.image); 
-                            selector.appendChild(option); // Agregar la opción al select
-                        });
-                    } else {
-                        console.error('La propiedad "stands" no es un array:', data.stands);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error al obtener los stands:', error);
-                });
-        });
-        function redirectToSelectedPage() {
-            const selector = document.getElementById('selector');
-            const selectedOption = selector.options[selector.selectedIndex];
-            const selectedOptionId = selectedOption.value; // Obtener el ID seleccionado
+      function redireccionar() {
+        // Redireccionar a la página deseada
+        window.location.href = "pasillo.html";
+      }
+      function redireccionarPasillo1() {
+        // Redireccionar a la página deseada
+        window.location.href = "pasillo1-5.html";
+      }
+      var selectedStandId;
+      document.addEventListener("DOMContentLoaded", function () {
+        const hostname = window.location.hostname;
 
-           
-            const selectedOptionImage = selectedOption.getAttribute('data-image'); // Obtener el nombre de la imagen del stand seleccionado
-            console.log(selectedOptionImage)
-            // Enviar el ID seleccionado a publico.js mediante una variable global
-            selectedStandId = selectedOptionId;
-            console.log(selectedStandId);
-    
-            // Redirigir a la página correspondiente
-            const selectedOptionUrl = selectedOption.getAttribute('data-url');
-            window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}&image=${selectedOptionImage}`;
+        // Realizar solicitud HTTP para obtener los stands
+        fetch(`http://${hostname}:8045/stands/getallstands`)
+          .then((response) => response.json()) // Convertir la respuesta a formato JSON
+          .then((data) => {
+            console.log(data); // Verificar el formato de los datos recibidos
 
-        }
-        function redirectToSelectedPasillo() {
-            const pasilloSelector = document.getElementById('pasillo');
-            const selectedOption = pasilloSelector.options[pasilloSelector.selectedIndex].value;
-            if (selectedOption === "De 1 a 5 Stands") {
-                window.location.href = "pasillo1-5.html";
-            }else if(selectedOption === "De 6 a 10 Stands"){
-                window.location.href = "pasillo.html";
-            }else if(selectedOption === "De 11 a 15 Stands"){
-                window.location.href = "pasillo11-15.html";
+            // Obtener el elemento select
+            const selector = document.getElementById("selector");
+
+            // Comprobar si data.stands es un array
+            if (Array.isArray(data.stands)) {
+              // Iterar sobre los stands obtenidos y agregar opciones al select
+              data.stands.forEach((stand) => {
+                // Crear una opción para cada stand
+                const option = document.createElement("option");
+                option.value = stand.id; // Establecer el valor de la opción como el ID del stand
+                option.textContent = stand.standName; // Establecer el texto de la opción como el nombre del stand
+                option.setAttribute("data-url", "publico.html"); // Establecer el atributo de datos para la URL de la página
+                option.setAttribute("data-image", stand.image);
+                selector.appendChild(option); // Agregar la opción al select
+              });
+            } else {
+              console.error(
+                'La propiedad "stands" no es un array:',
+                data.stands
+              );
             }
+          })
+          .catch((error) => {
+            console.error("Error al obtener los stands:", error);
+          });
+      });
+      function redirectToSelectedPage() {
+        const selector = document.getElementById("selector");
+        const selectedOption = selector.options[selector.selectedIndex];
+        const selectedOptionId = selectedOption.value; // Obtener el ID seleccionado
+
+        const selectedOptionImage = selectedOption.getAttribute("data-image"); // Obtener el nombre de la imagen del stand seleccionado
+        console.log(selectedOptionImage);
+        // Enviar el ID seleccionado a publico.js mediante una variable global
+        selectedStandId = selectedOptionId;
+        console.log(selectedStandId);
+
+        // Redirigir a la página correspondiente
+        const selectedOptionUrl = selectedOption.getAttribute("data-url");
+        window.location.href = `${selectedOptionUrl}?standId=${selectedOptionId}&image=${selectedOptionImage}`;
+      }
+      function redirectToSelectedPasillo() {
+        const pasilloSelector = document.getElementById("pasillo");
+        const selectedOption =
+          pasilloSelector.options[pasilloSelector.selectedIndex].value;
+        if (selectedOption === "De 1 a 5 Stands") {
+          window.location.href = "pasillo1-5.html";
+        } else if (selectedOption === "De 6 a 10 Stands") {
+          window.location.href = "pasillo.html";
+        } else if (selectedOption === "De 11 a 15 Stands") {
+          window.location.href = "pasillo11-15.html";
         }
+      }
 
-        localStorage.setItem('selectedStandId', selectedStandId);
+      localStorage.setItem("selectedStandId", selectedStandId);
 
+      // Función para limpiar la selección cuando se carga la página
+      function limpiarSeleccion() {
+        // Obtener el formulario de selección
+        const selectionForm = document.getElementById("selectionForm");
 
-         // Función para limpiar la selección cuando se carga la página
-         function limpiarSeleccion() {
-            // Obtener el formulario de selección
-            const selectionForm = document.getElementById('selectionForm');
+        // Restablecer el formulario
 
-           
-            // Restablecer el formulario
-          
-            setTimeout(()=>{
-                selectionForm.reset();
-                
+        setTimeout(() => {
+          selectionForm.reset();
+        }, 0);
+      }
 
-            },0)
-            
-      
-        
-        }
-
-        // Llamar a la función para limpiar la selección cuando se cargue la página
-        window.addEventListener('load', limpiarSeleccion);
-        
-        
-    
-
-        
+      // Llamar a la función para limpiar la selección cuando se cargue la página
+      window.addEventListener("load", limpiarSeleccion);
     </script>
-
-</body>
-
+  </body>
 </html>
